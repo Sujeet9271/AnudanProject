@@ -1,6 +1,16 @@
 from django.db import models
 
+
+
+
+class NagarPalika(models.Model):
+    name = models.CharField(max_length=150)
+    
+    def __str__(self):
+        return f'{self.name}'
+
 class Karyakram(models.Model):
+    nagarpalika = models.ForeignKey(NagarPalika,on_delete=models.PROTECT)
     name = models.CharField(max_length=255)
 
     def __str__(self):
@@ -8,6 +18,7 @@ class Karyakram(models.Model):
 
 
 class Samagri(models.Model):
+    nagarpalika = models.ForeignKey(NagarPalika,on_delete=models.PROTECT)
     karyakram = models.ForeignKey(Karyakram,on_delete=models.CASCADE, related_name='samagri')
     name      = models.CharField(max_length=255)
 
@@ -25,6 +36,7 @@ def location(instance,filename):
     return f"{instance.name}/{filename}"
 
 class AnudanPerosnal(models.Model):
+    nagarpalika = models.ForeignKey(NagarPalika,on_delete=models.PROTECT)
     choices_approval = (
         ('Approved',('Approved')),
        ('Not Approved', ('Not Approved'))
@@ -44,6 +56,7 @@ class AnudanPerosnal(models.Model):
         return f'{self.name}-{self.karyakram}-{self.samagri}-{self.approval}'
 
 class AnudanCompany(models.Model):
+    nagarpalika = models.ForeignKey(NagarPalika,on_delete=models.PROTECT)
     choices_approval = (
         ('Approved',('Approved')),
        ('Not Approved', ('Not Approved'))
