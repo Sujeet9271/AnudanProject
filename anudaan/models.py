@@ -32,8 +32,11 @@ class Samagri(models.Model):
         ordering=['karyakram']
 
 
-def location(instance,filename):
-    return f"{instance.name}/{filename}"
+def personal_location(instance,filename):
+    return f"Peronal/{instance.name}/{filename}"
+
+def company_location(instance,filename):
+    return f"Company{instance.firm_name}/{filename}"
 
 class AnudanPerosnal(models.Model):
     nagarpalika = models.ForeignKey(NagarPalika,on_delete=models.PROTECT)
@@ -47,8 +50,8 @@ class AnudanPerosnal(models.Model):
     NagriktaNumber = models.PositiveBigIntegerField(max_length=12,verbose_name='Nagrikta Number')
     JariJilla      = models.CharField(max_length=20, verbose_name='Jaari Jilla')
     karyakram      = models.ForeignKey(Karyakram,on_delete=models.CASCADE,)
-    NagriktaFront  = models.ImageField(upload_to=location,verbose_name='Nagrikta Front Photo')
-    NagriktaBack   = models.ImageField(upload_to=location,verbose_name='Nagrikta Back Photo')
+    NagriktaFront  = models.ImageField(upload_to=personal_location,verbose_name='Nagrikta Front Photo')
+    NagriktaBack   = models.ImageField(upload_to=personal_location,verbose_name='Nagrikta Back Photo')
     samagri        = models.ForeignKey(Samagri,on_delete=models.CASCADE)
     approval       = models.CharField(choices=choices_approval,default='Not Approved',max_length=14)
 
@@ -70,8 +73,8 @@ class AnudanCompany(models.Model):
     
     JariJilla      = models.CharField(max_length=20, verbose_name='Jaari Jilla')
     karyakram      = models.ForeignKey(Karyakram,on_delete=models.CASCADE,)
-    NagriktaFront  = models.ImageField(upload_to=location,verbose_name='Nagrikta Front Photo')
-    NagriktaBack   = models.ImageField(upload_to=location,verbose_name='Nagrikta Back Photo')
+    NagriktaFront  = models.ImageField(upload_to=company_location,verbose_name='Nagrikta Front Photo')
+    NagriktaBack   = models.ImageField(upload_to=company_location,verbose_name='Nagrikta Back Photo')
     samagri        = models.ForeignKey(Samagri,on_delete=models.CASCADE)
     approval       = models.CharField(choices=choices_approval,default='Not Approved',max_length=14)
 
