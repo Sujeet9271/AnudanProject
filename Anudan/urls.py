@@ -26,3 +26,9 @@ urlpatterns = [
     path('samagri/',anudaan.create_samagri),
     path('create_anudan/',anudaan.create_anudan),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
+
+
+admin.site.site_url=''
+admin.site.site_header='Anudan Project'
+admin.site.site_title='Anudan Project'
+admin.site.index_title='Anudan Project Administration'

@@ -11,9 +11,14 @@ class NagarPalikaAdmin(admin.ModelAdmin):
     list_display=['id','name']
     list_display_links=['id','name']
 
+class SamagriInline(admin.StackedInline):
+    model = Samagri
+    extra = 1
+
 
 @admin.register(Karyakram)
 class KaryakramAdmin(admin.ModelAdmin):
+    inlines=[SamagriInline]
     list_display=['id','name','nagarpalika']
     list_display_links=['id','name']
     list_filter=['nagarpalika']
