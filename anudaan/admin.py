@@ -27,7 +27,7 @@ class KaryakramAdmin(admin.ModelAdmin):
         qs = super(KaryakramAdmin, self).get_queryset(request)
         if request.user.is_superuser:
             return qs
-        return qs.filter(nagarpalika=request.user.Palika.id)
+        return qs.filter(nagarpalika=request.user.Palika.palika)
 
 
 @admin.register(Samagri)
@@ -40,7 +40,7 @@ class SamagriAdmin(admin.ModelAdmin):
         qs = super(SamagriAdmin, self).get_queryset(request)
         if request.user.is_superuser:
             return qs
-        return qs.filter(nagarpalika=request.user.Palika.id)
+        return qs.filter(nagarpalika=request.user.Palika.palika)
 
 @admin.register(AnudanPerosnal)
 class AnudanAdmin(admin.ModelAdmin):
@@ -54,4 +54,4 @@ class AnudanAdmin(admin.ModelAdmin):
         qs = super(AnudanAdmin, self).get_queryset(request)
         if request.user.is_superuser:
             return qs
-        return qs.filter(nagarpalika=request.user.Palika.id)
+        return qs.filter(nagarpalika=request.user.Palika.palika)
