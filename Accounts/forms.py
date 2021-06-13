@@ -1,6 +1,7 @@
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 from django import forms
-from .models import PalikaUser 
+from django.forms import fields
+from .models import PalikaUser, Profile 
 
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField()
@@ -15,3 +16,10 @@ class CustomUserCreationForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+
+class CustomUserChangeForm(UserChangeForm):
+    class Meta:
+        model = PalikaUser
+        fields = ('email','username','first_name','last_name',)
+

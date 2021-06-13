@@ -57,9 +57,10 @@ class PalikaUser(AbstractBaseUser,PermissionsMixin):
     def palika(self):
         return f'{self.Palika}'
 
+
 class Palika(models.Model):
     user = models.OneToOneField(PalikaUser,on_delete=models.CASCADE,related_name='Palika')
-    palika = models.ForeignKey(NagarPalika,on_delete=models.PROTECT)
+    palika = models.ForeignKey(NagarPalika,on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.user.username} works in {self.palika.name}'
@@ -67,8 +68,9 @@ class Palika(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(PalikaUser,on_delete=models.CASCADE)
-    address = models.CharField(_('Address'),max_length=150)
-    contact_number= models.PositiveBigIntegerField(_('Contact Number'))
+    address = models.CharField(_('Address'),max_length=150,blank=True,null=True)
+    contact_number= models.PositiveBigIntegerField(_('Contact Number'),blank=True,null=True)   
+
 
     def __str__(self):
         return f"{self.user.username}'s Profile"

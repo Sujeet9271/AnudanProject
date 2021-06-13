@@ -1,21 +1,13 @@
 from django.contrib import admin
 from .models import PalikaUser,Palika, Profile
 from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth import forms
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm,CustomUserChangeForm
 from django.utils.translation import gettext_lazy as _
 
 # Register your models here.
 
-# class CustomUserCreationForm(forms.UserCreationForm):
-#     class Meta:
-#         model = PalikaUser
-#         fields = ('email','username',)
 
-class CustomUserChangeForm(forms.UserChangeForm):
-    class Meta:
-        model = PalikaUser
-        fields = ('email','username','first_name','last_name',)
+
 
 class PalikaAdmin(admin.TabularInline):
     model = Palika
@@ -24,6 +16,8 @@ class PalikaAdmin(admin.TabularInline):
 class ProfileInline(admin.TabularInline):
     model = Profile
 
+
+@admin.register(PalikaUser)
 class UserAdminConfig(UserAdmin):
     model = PalikaUser
     add_form = CustomUserCreationForm
@@ -31,6 +25,7 @@ class UserAdminConfig(UserAdmin):
     inlines = [PalikaAdmin,ProfileInline]
     list_display = ['email','username','is_staff','is_superuser','Palika',]
     list_display_links = ['email','username']
+    readonly_fields = ['last_login','date_joined']
 
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
@@ -43,17 +38,30 @@ class UserAdminConfig(UserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email','username','first_name','last_name', 'password1', 'password2','is_staff','groups'),
+            'fields': ('email','username','first_name','last_name', 'password1', 'password2','is_staff','groups','user_permissions',),
         }),
     )
+
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+        return qs.filter(id=request.user.id)
+
+    def get_readonly_fields(self, request,obj):
+        if obj: # editing an existing object
+            return self.readonly_fields +['is_staff', 'is_superuser','is_active','groups','user_permissions','Palika'] if not request.user.is_superuser else self.readonly_fields
+        return self.readonly_fields
+
+    
     
 
-admin.site.register(PalikaUser,UserAdminConfig)
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     list_display=['user','address', 'contact_number']
-    fields=['user','address','contact_number']
+    fields = ['address','contact_number']
+
 
     def get_queryset(self, request):
         qs = super(ProfileAdmin, self).get_queryset(request)
@@ -61,9 +69,20 @@ class ProfileAdmin(admin.ModelAdmin):
             return qs
         return qs.filter(user=request.user)
     
-    
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        if request.user.is_superuser:
+            return qs
+        return qs.filter(user=request.user.id)
     
     def get_fieldsets(self, request,obj):
         return super().get_fieldsets(request, obj=obj)
     
 
+@admin.register(Palika)
+class PalikaAdmin(admin.ModelAdmin):
+    list_display=['id','user','palika']
+    list_display_links=['id','user']
+    list_editable = ['palika']
+
+    list_filter = ['palika']
