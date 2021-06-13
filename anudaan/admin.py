@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.http import request
 from .models import Karyakram,Samagri,AnudanPerosnal,NagarPalika
-
+from django.utils.translation import gettext_lazy as _
 # Register your models here.
 
 
@@ -48,6 +48,27 @@ class AnudanAdmin(admin.ModelAdmin):
     list_filter=['approval','ward','Tole','JariJilla','karyakram','samagri']
     list_display_links=['id','name']
     list_editable = ['approval']
+
+
+    fieldsets = (
+        
+        (_('Nagar Palika'), {'fields': ('nagarpalika',)}),
+        (_('Personal info'), {'fields': ( 'name',)}),
+        (_('Address'), {'fields': ('ward', 'Tole',)}),
+        (_('Nagrikta Details'), {'fields': ('NagriktaNumber', 'JariJilla','NagriktaFront','NagriktaBack')}),
+        (_('Anudan Request'),{'fields':('karyakram','samagri')}),
+        (_('Approval'),{'fields':('approval')})
+
+    )
+    fieldsets = (
+
+        (_('Nagar Palika'), {'fields': ('nagarpalika',)}),
+        (_('Personal info'), {'fields': ( 'name',)}),
+        (_('Address'), {'fields': ('ward', 'Tole',)}),
+        (_('Nagrikta Details'), {'fields': ('NagriktaNumber', 'JariJilla','NagriktaFront','NagriktaBack')}),
+        (_('Anudan Request'),{'fields':('karyakram','samagri')}),
+
+    )
 
 
     def get_queryset(self, request):

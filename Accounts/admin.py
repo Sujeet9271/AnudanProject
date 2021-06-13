@@ -36,9 +36,10 @@ class UserAdminConfig(UserAdmin):
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
     )
     add_fieldsets = (
-        (None, {
-            'classes': ('wide',),
-            'fields': ('email','username','first_name','last_name', 'password1', 'password2','is_staff','groups','user_permissions',),
+        (_('Authentication'), {'fields': ('email', 'password')}),
+        (_('Personal info'), {'fields': ( 'username','first_name', 'last_name')}),
+        (_('Permissions'), {
+            'fields': ( 'is_staff', 'groups', 'user_permissions'),
         }),
     )
 
