@@ -1,6 +1,5 @@
-from django.contrib.auth.forms import UserCreationForm,UserChangeForm
+from django.contrib.auth.forms import UserCreationForm
 from django import forms
-from django.forms import fields
 from .models import PalikaUser 
 
 class CustomUserCreationForm(UserCreationForm):
