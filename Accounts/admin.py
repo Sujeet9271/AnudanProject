@@ -25,7 +25,7 @@ class UserAdminConfig(UserAdmin):
     model = PalikaUser
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
-    # inlines = [PalikaStaffAdmin]
+    inlines = [PalikaStaffAdmin]
     list_display = ['email', 'username', 'first_name', 'last_name', 'address', 'contact_number', 'is_staff', 'is_admin',
                     'is_superuser', 'palika_staff', ]
     list_display_links = ['email', 'username']
@@ -89,6 +89,9 @@ class ProfileAdmin(admin.ModelAdmin):
         form = super(ProfileAdmin,self).get_form(request,*args, **kwargs)
         form.current_user=request.user
         return form
+
+
+
 
 @admin.register(PalikaStaff)
 class PalikaStaffAdmin(admin.ModelAdmin):
