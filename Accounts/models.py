@@ -67,6 +67,11 @@ class PalikaUser(AbstractBaseUser, PermissionsMixin):
     def contact_number(self):
         return f'{self.profile.contact_number}'
 
+    def get_fullname(self):
+        if self.first_name=='':
+            return self.get_username()
+        return f'{self.first_name} {self.last_name}'
+
 
 class PalikaStaff(models.Model):
     user = models.OneToOneField(PalikaUser, on_delete=models.CASCADE, related_name='palika_staff')
