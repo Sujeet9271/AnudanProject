@@ -26,7 +26,8 @@ class Samagri(models.Model):
         Karyakram,
         chained_field="nagarpalika",
         chained_model_field="nagarpalika",
-        on_delete=models.PROTECT
+        on_delete=models.PROTECT,
+        auto_choose=True
         )
     name = models.CharField(max_length=255, help_text='Enter Samagri to Add')
 
@@ -63,14 +64,17 @@ class AnudanPerosnal(models.Model):
         Karyakram,
         chained_field="nagarpalika",
         chained_model_field="nagarpalika",
-        on_delete=models.PROTECT
+        on_delete=models.PROTECT,
+        auto_choose=True
         )
     nagrikta_front = models.ImageField(upload_to=personal_location, verbose_name='Nagrikta Front Photo')
     nagrikta_back = models.ImageField(upload_to=personal_location, verbose_name='Nagrikta Back Photo')
     samagri = ChainedForeignKey(Samagri,
         chained_field="karyakram",
         chained_model_field="karyakram",
-        on_delete=models.PROTECT)
+        auto_choose=True,
+        on_delete=models.PROTECT
+        )
     approval = models.CharField(choices=choices_approval, default='Not Approved', max_length=14)
 
     def __str__(self):
