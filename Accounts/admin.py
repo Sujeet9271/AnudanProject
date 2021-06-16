@@ -15,6 +15,9 @@ from django.forms.models import BaseInlineFormSet
 
 class PalikaStaffAdmin(admin.TabularInline):
     model = PalikaStaff
+
+class ProfileInline(admin.TabularInline):
+    model = Profile
     
 
 
@@ -25,7 +28,7 @@ class UserAdminConfig(UserAdmin):
     model = PalikaUser
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
-    inlines = [PalikaStaffAdmin]
+    inlines = [PalikaStaffAdmin,ProfileInline]
     list_display = ['email', 'username', 'first_name', 'last_name', 'address', 'contact_number', 'is_staff', 'is_admin',
                     'is_superuser', 'palika_staff', ]
     list_display_links = ['email', 'username']
@@ -71,11 +74,19 @@ class UserAdminConfig(UserAdmin):
             return self.readonly_fields +['is_staff', 'is_admin','is_active','groups','user_permissions','Palika']
 
 
-@admin.register(Profile)
+# @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     list_display=['user','address', 'contact_number']
-    fields = ['user','address','contact_number']
     form = ProfileForm
+
+
+    fieldsets = (
+        ('User Profile', {'fields': ('address','contact_number')}),
+    )
+
+    add_fieldsets = (
+        ('User Profile',{'fields':('user','address','contact_number')}),
+    )
 
 
     def get_queryset(self, request):
@@ -90,6 +101,10 @@ class ProfileAdmin(admin.ModelAdmin):
         form.current_user=request.user
         return form
 
+    def get_fieldsets(self, request, obj):
+        if obj:
+            return self.fieldsets
+        return self.add_fieldsets
 
 
 

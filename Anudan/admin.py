@@ -89,6 +89,17 @@ class AnudanPersonalAdmin(admin.ModelAdmin):
 
     )
 
+
+    add_fieldsets = (
+
+        (_('Nagar Palika'), {'fields': ('nagarpalika',),'classes':("wide",),'description':'Select Nagar Palika'}),
+        (_('Personal info'), {'fields': ( 'name',),'classes':("wide",),'description':'Enter Your Name'}),
+        (_('Address'), {'fields': ('ward', 'tole',),'classes':("wide",),'description':'Enter Your Address'}),
+        (_('Nagrikta Details'), {'fields': ('nagrikta_number', 'jari_jilla','nagrikta_front','nagrikta_back'),'classes':("wide",),'description':'Enter your citizenship details'}),
+        (_('Anudan Request'),{'fields':('karyakram','samagri'),'classes':("wide",),'description':'Select karyakram and its respective samagri'}),
+
+    )
+
     def get_queryset(self, request):
         qs = super(AnudanPersonalAdmin, self).get_queryset(request)
         if request.user.is_superuser:
@@ -113,6 +124,11 @@ class AnudanPersonalAdmin(admin.ModelAdmin):
         else:
             return self.readonly_fields+('approval',)
 
+    def get_fieldsets(self, request, obj):
+        if obj:
+            return self.fieldsets
+        return self.add_fieldsets
+
         
 
 
@@ -134,6 +150,15 @@ class AnudanCompanyAdmin(admin.ModelAdmin):
         (_('Address'), {'fields': ('ward', 'tole',),'classes':("wide",),'description':'Enter Your Address'}),
         (_('Anudan Request'),{'fields':('ward_sifaris','prastavan'),'classes':("wide",),'description':'Select karyakram and its respective samagri'}),
         (_('Approval'),{'fields':('approval',),'classes':("wide",),'description':'Test'})
+    )
+
+
+    add_fieldsets = (
+
+        (_('Nagar Palika'), {'fields': ('nagarpalika',),'classes':("wide",),'description':'Select Nagar Palika'}),
+        (_('Firm info'), {'fields': ( 'firm_name','pan_no','vat_no','registration_no','registered_place','firm_registration_proof'),'classes':("wide",),'description':'About Firm'}),
+        (_('Address'), {'fields': ('ward', 'tole',),'classes':("wide",),'description':'Enter Your Address'}),
+        (_('Anudan Request'),{'fields':('ward_sifaris','prastavan'),'classes':("wide",),'description':'Select karyakram and its respective samagri'}),
     )
 
     def get_queryset(self, request):
@@ -158,3 +183,9 @@ class AnudanCompanyAdmin(admin.ModelAdmin):
             return self.readonly_fields 
         else:
             return self.readonly_fields+('approval',)
+
+
+    def get_fieldsets(self, request, obj):
+        if obj:
+            return self.fieldsets
+        return self.add_fieldsets
