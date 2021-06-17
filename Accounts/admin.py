@@ -64,6 +64,8 @@ class UserAdminConfig(UserAdmin):
             if request.user.is_superuser:
                 return self.readonly_fields
             elif request.user.is_admin:
+                if obj.is_admin:
+                    return self.readonly_fields+['is_admin','groups','user_permissions']
                 return self.readonly_fields + ['is_admin','user_permissions']
             return self.readonly_fields +['is_staff', 'is_admin','is_active','groups','user_permissions','Palika']
         else:

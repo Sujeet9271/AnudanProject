@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 from django.contrib import admin,messages
 
-from .models import AnudanCompany, Karyakram,Samagri,AnudanPerosnal,NagarPalika
+from .models import AnudanCompany, Karyakram,Samagri,AnudanPersonal,NagarPalika
 from django.utils.translation import gettext_lazy as _
 from .forms import AnudanPersonalForm,KaryakramForm,SamagriForm,AnudanCompanyForm
 # Register your models here.
@@ -70,7 +70,7 @@ class SamagriAdmin(admin.ModelAdmin):
 
 
 
-@admin.register(AnudanPerosnal)
+@admin.register(AnudanPersonal)
 class AnudanPersonalAdmin(admin.ModelAdmin):
     list_display=['id','name','ward','tole','nagrikta_number','jari_jilla','karyakram','nagrikta_front','nagrikta_back','samagri','nagarpalika','approval']
     list_filter=['approval','ward','tole','jari_jilla','karyakram','samagri','nagarpalika']

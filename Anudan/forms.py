@@ -1,5 +1,5 @@
 from django import forms
-from .models import AnudanCompany, AnudanPerosnal,Karyakram, NagarPalika,Samagri
+from .models import AnudanCompany, AnudanPersonal,Karyakram, NagarPalika,Samagri
 
 class AnudanPersonalForm(forms.ModelForm):
 
@@ -9,7 +9,7 @@ class AnudanPersonalForm(forms.ModelForm):
 
 
     class Meta:
-        model = AnudanPerosnal
+        model = AnudanPersonal
         fields = ['nagarpalika','name','ward','tole','nagrikta_number','jari_jilla','nagrikta_front','nagrikta_back','karyakram','samagri']
 
 

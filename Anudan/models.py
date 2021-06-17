@@ -49,7 +49,7 @@ def company_location(instance, filename):
     return f"Company{instance.firm_name}/{filename}"
 
 
-class AnudanPerosnal(models.Model):
+class AnudanPersonal(models.Model):
     nagarpalika = models.ForeignKey(NagarPalika, on_delete=models.PROTECT)
     choices_approval = (
         ('Approved', ('Approved')),
