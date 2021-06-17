@@ -3,7 +3,6 @@ from .models import PalikaUser, PalikaStaff, Profile
 from django.contrib.auth.admin import UserAdmin
 from .forms import CustomUserCreationForm, CustomUserChangeForm, PalikaStaffForm, ProfileForm
 from django.utils.translation import gettext_lazy as _
-from django.forms.models import BaseInlineFormSet
 
 
 
@@ -83,12 +82,10 @@ class ProfileAdmin(admin.ModelAdmin):
 
 
     fieldsets = (
-        ('User Profile', {'fields': ('address','contact_number')}),
+        ('User Profile', {'fields': ('user','address','contact_number')}),
     )
 
-    add_fieldsets = (
-        ('User Profile',{'fields':('user','address','contact_number')}),
-    )
+    
 
 
     def get_queryset(self, request):
@@ -103,10 +100,10 @@ class ProfileAdmin(admin.ModelAdmin):
         form.current_user=request.user
         return form
 
-    def get_fieldsets(self, request, obj):
-        if obj:
-            return self.fieldsets
-        return self.add_fieldsets
+    # def get_fieldsets(self, request, obj):
+    #     if obj:
+    #         return self.fieldsets
+    #     return self.add_fieldsets
 
 
 
@@ -130,19 +127,6 @@ class PalikaStaffAdmin(admin.ModelAdmin):
             return qs
         return qs.filter(palika=request.user.palika_staff.palika)
 
-    # def get_readonly_fields(self, request, obj):
-    #     if obj: 
-    #         if request.user.is_superuser:
-    #             return self.readonly_fields
-    #         elif request.user.is_admin:
-    #             return self.readonly_fields + ('user',)
-    #         return self.readonly_fields +('user','palika')
-    #     else:
-    #         if request.user.is_superuser:
-    #             return self.readonly_fields
-    #         elif request.user.is_admin:
-    #             return self.readonly_fields + ('user',)
-    #         return self.readonly_fields + ('user','palika')
         
     
 
