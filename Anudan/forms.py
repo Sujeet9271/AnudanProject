@@ -7,8 +7,7 @@ class AnudanPersonalForm(forms.ModelForm):
 
     def __init__(self, *args,**kwargs):
         super(AnudanPersonalForm,self).__init__(*args,**kwargs)
-        self.fields['nagarpalika'].queryset = NagarPalika.objects.all().filter(id=self.current_user.palika_staff.palika.id) if not self.current_user.is_superuser else NagarPalika.objects.all()
-
+        self.fields['nagarpalika'].queryset = NagarPalika.objects.filter(id=self.current_user.palika_staff.palika.id) if not self.current_user.is_superuser else NagarPalika.objects.all()
 
     class Meta:
         model = AnudanPersonal
@@ -21,7 +20,7 @@ class AnudanCompanyForm(forms.ModelForm):
 
     def __init__(self, *args,**kwargs):
         super(AnudanCompanyForm,self).__init__(*args,**kwargs)
-        self.fields['nagarpalika'].queryset = NagarPalika.objects.all().filter(id=self.current_user.palika_staff.palika.id) if not self.current_user.is_superuser else NagarPalika.objects.all()
+        self.fields['nagarpalika'].queryset = NagarPalika.objects.filter(id=self.current_user.palika_staff.palika.id) if not self.current_user.is_superuser else NagarPalika.objects.all()
 
 
     class Meta:
@@ -35,7 +34,7 @@ class KaryakramForm(forms.ModelForm):
 
     def __init__(self, *args,**kwargs):
         super(KaryakramForm,self).__init__(*args,**kwargs)
-        self.fields['nagarpalika'].queryset = NagarPalika.objects.all().filter(id=self.current_user.palika_staff.palika.id) if not self.current_user.is_superuser else NagarPalika.objects.all()
+        self.fields['nagarpalika'].queryset = NagarPalika.objects.filter(id=self.current_user.palika_staff.palika.id) if not self.current_user.is_superuser else NagarPalika.objects.all()
 
     class Meta:
         model = Karyakram
@@ -48,7 +47,7 @@ class SamagriForm(forms.ModelForm):
 
     def __init__(self, *args,**kwargs):
         super(SamagriForm,self).__init__(*args,**kwargs)
-        self.fields['nagarpalika'].queryset = NagarPalika.objects.all().filter(id=self.current_user.palika_staff.palika.id) if not self.current_user.is_superuser else NagarPalika.objects.all()
+        self.fields['nagarpalika'].queryset = NagarPalika.objects.filter(id=self.current_user.palika_staff.palika.id) if not self.current_user.is_superuser else NagarPalika.objects.all()
 
     class Meta:
         model = Samagri

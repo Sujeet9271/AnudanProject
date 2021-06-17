@@ -15,10 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from django.shortcuts import render,redirect
+
+def index(request):
+    return redirect('admin/')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('chaining/', include('smart_selects.urls')),
+    path('',index)
 ]
 
 admin.site.site_header='Anudan Project'

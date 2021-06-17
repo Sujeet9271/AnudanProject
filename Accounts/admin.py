@@ -74,6 +74,8 @@ class UserAdminConfig(UserAdmin):
                     return self.readonly_fields + ['is_admin','user_permissions']
             return self.readonly_fields +['is_staff', 'is_admin','is_active','groups','user_permissions','Palika']
 
+    
+
 
 # @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):

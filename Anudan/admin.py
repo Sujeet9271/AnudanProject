@@ -73,7 +73,7 @@ class SamagriAdmin(admin.ModelAdmin):
 @admin.register(AnudanPersonal)
 class AnudanPersonalAdmin(admin.ModelAdmin):
     list_display=['id','name','ward','tole','nagrikta_number','jari_jilla','karyakram','nagrikta_front','nagrikta_back','samagri','nagarpalika','approval']
-    list_filter=['approval','ward','tole','jari_jilla','karyakram','samagri','nagarpalika']
+    list_filter=['approval','ward','tole','jari_jilla','karyakram','samagri']
     list_display_links=['id','name']
     form = AnudanPersonalForm
 
@@ -129,6 +129,10 @@ class AnudanPersonalAdmin(admin.ModelAdmin):
             return self.fieldsets
         return self.add_fieldsets
 
+    def get_list_filter(self, request):
+        if request.user.is_superuser:
+            return self.list_filter+['nagarpalika']
+        return self.list_filter
         
 
 
