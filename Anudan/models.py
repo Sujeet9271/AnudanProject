@@ -40,11 +40,11 @@ class Samagri(models.Model):
 
 # Storing file for personal Anudan
 def personal_location(instance, filename):
-    return f"Peronal/{instance.name}/{filename}"
+    return f"Personal/{instance.name}/{filename}"
 
 #  Storing file for Company Anudan
 def company_location(instance, filename):
-    return f"Company{instance.firm_name}/{filename}"
+    return f"Company/{instance.firm_name}/{filename}"
 
 
 class AnudanPersonal(models.Model):
