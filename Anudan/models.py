@@ -103,4 +103,4 @@ class AnudanCompany(models.Model):
     approval = models.CharField(choices=choices_approval, default='Not Approved', max_length=14)
 
     def __str__(self):
-        return f'{self.firm_name}-{self.R}-{self.samagri}-{self.approval}'
+        return f'{self.firm_name}-{self.registration_no}-{self.approval}'
