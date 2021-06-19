@@ -1,7 +1,10 @@
 # Default ignored files
-.env
+
 /shelf/
 /workspace.xml
+/.env
+/.idea
+/.vscode
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
