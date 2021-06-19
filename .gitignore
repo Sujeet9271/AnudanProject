@@ -1,5 +1,6 @@
-/.env
-/ *.pyc
+ 
 
 .env
 *pyc
+.idea
+.vscode
