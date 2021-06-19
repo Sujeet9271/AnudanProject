@@ -7,6 +7,9 @@ name = "pypi"
 pillow = "*"
 django = "*"
 django-smart-selects = "*"
+django-heroku = "*"
+gunicorn = "*"
+python-decouple = "*"
 
 [dev-packages]
 

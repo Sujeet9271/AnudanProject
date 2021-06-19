@@ -8,6 +8,9 @@ class NagarPalika(models.Model):
     def __str__(self):
         return f'{self.name}'
 
+    class Meta:
+        verbose_name_plural = 'Nagar Palika'
+
 
 class Karyakram(models.Model):
     nagarpalika     = models.ForeignKey(NagarPalika, on_delete=models.PROTECT)
@@ -17,6 +20,9 @@ class Karyakram(models.Model):
 
     def __str__(self):
         return f'{self.name}-{self.nagarpalika.name}'
+    
+    class Meta:
+        verbose_name_plural = 'Karyakram'
 
 
 class Samagri(models.Model):
@@ -37,6 +43,7 @@ class Samagri(models.Model):
 
     class Meta:
         ordering = ['karyakram']
+        verbose_name_plural = 'Samagri'
 
 # Storing file for personal Anudan
 def personal_location(instance, filename):
@@ -78,6 +85,8 @@ class AnudanPersonal(models.Model):
     def __str__(self):
         return f'{self.name}-{self.karyakram}-{self.samagri}-{self.approval}'
 
+    class Meta:
+        verbose_name_plural = 'Anudan Personal'
 
 class AnudanCompany(models.Model):
     nagarpalika             = models.ForeignKey(NagarPalika, on_delete=models.PROTECT)
@@ -99,3 +108,6 @@ class AnudanCompany(models.Model):
 
     def __str__(self):
         return f'{self.firm_name}-{self.registration_no}-{self.approval}'
+
+    class Meta:
+        verbose_name_plural = 'Anudan Company'
