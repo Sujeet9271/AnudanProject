@@ -1,26 +1,27 @@
 from django import forms
-from .models import AnudanCompany, AnudanPersonal,Karyakram, NagarPalika,Samagri
+from .models import AnudanCompany, AnudanPersonal,Karyakram, Municipality,Samagri
+from django.utils.translation import ugettext_lazy as _
 
 class AnudanPersonalForm(forms.ModelForm):
-    nagarpalika = forms.ModelChoiceField(queryset=NagarPalika.objects.none())
+    municipality = forms.ModelChoiceField(label=_('Municipality'),queryset=Municipality.objects.none())
     
 
     def __init__(self, *args,**kwargs):
         super(AnudanPersonalForm,self).__init__(*args,**kwargs)
-        self.fields['nagarpalika'].queryset = NagarPalika.objects.filter(id=self.current_user.palika_staff.palika.id) if not self.current_user.is_superuser else NagarPalika.objects.all()
+        self.fields['municipality'].queryset = Municipality.objects.filter(id=self.current_user.palika_staff.municipality.id) if not self.current_user.is_superuser else Municipality.objects.all()
 
     class Meta:
         model = AnudanPersonal
-        fields = ['nagarpalika','name','ward','tole','nagrikta_number','jari_jilla','nagrikta_front','nagrikta_back','karyakram','samagri']
+        fields = ['municipality','name','ward','tole','nagrikta_number','jari_jilla','nagrikta_front','nagrikta_back','karyakram','samagri']
 
 
 
 class AnudanCompanyForm(forms.ModelForm):
-    nagarpalika = forms.ModelChoiceField(queryset=NagarPalika.objects.none())
+    municipality = forms.ModelChoiceField(label=_('Municipality'),queryset=Municipality.objects.none())
 
     def __init__(self, *args,**kwargs):
         super(AnudanCompanyForm,self).__init__(*args,**kwargs)
-        self.fields['nagarpalika'].queryset = NagarPalika.objects.filter(id=self.current_user.palika_staff.palika.id) if not self.current_user.is_superuser else NagarPalika.objects.all()
+        self.fields['municipality'].queryset = Municipality.objects.filter(id=self.current_user.palika_staff.municipality.id) if not self.current_user.is_superuser else Municipality.objects.all()
 
 
     class Meta:
@@ -30,27 +31,27 @@ class AnudanCompanyForm(forms.ModelForm):
 
 
 class KaryakramForm(forms.ModelForm):
-    nagarpalika = forms.ModelChoiceField(queryset=NagarPalika.objects.none())
+    municipality = forms.ModelChoiceField(label=_('Municipality'),queryset=Municipality.objects.none())
 
     def __init__(self, *args,**kwargs):
         super(KaryakramForm,self).__init__(*args,**kwargs)
-        self.fields['nagarpalika'].queryset = NagarPalika.objects.filter(id=self.current_user.palika_staff.palika.id) if not self.current_user.is_superuser else NagarPalika.objects.all()
+        self.fields['municipality'].queryset = Municipality.objects.filter(id=self.current_user.palika_staff.municipality.id) if not self.current_user.is_superuser else Municipality.objects.all()
 
     class Meta:
         model = Karyakram
-        fields = ['nagarpalika','name']
+        fields = ['municipality','name']
 
     
 
 class SamagriForm(forms.ModelForm):
-    nagarpalika = forms.ModelChoiceField(queryset=NagarPalika.objects.none())
+    municipality = forms.ModelChoiceField(label=_('Municipality'),queryset=Municipality.objects.none())
 
     def __init__(self, *args,**kwargs):
         super(SamagriForm,self).__init__(*args,**kwargs)
-        self.fields['nagarpalika'].queryset = NagarPalika.objects.filter(id=self.current_user.palika_staff.palika.id) if not self.current_user.is_superuser else NagarPalika.objects.all()
+        self.fields['municipality'].queryset = Municipality.objects.filter(id=self.current_user.palika_staff.municipality.id) if not self.current_user.is_superuser else Municipality.objects.all()
 
     class Meta:
         model = Samagri
-        fields = ['nagarpalika','karyakram','name']
+        fields = ['municipality','karyakram','name']
 
     

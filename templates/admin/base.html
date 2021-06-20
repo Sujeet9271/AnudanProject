@@ -88,7 +88,7 @@
         <!-- Content -->
         <div id="content" class="{% block coltype %}colM{% endblock %}">
           {% block pretitle %}  {% endblock %}
-          {% block content_title %}{% if user.is_superuser %}<h1>Head Office</h1>{% elif user.is_staff %}<h1>{{ user.palika_staff.palika.name }}</h1>{% endif %}{% endblock %}
+          {% block content_title %}{% if user.is_superuser %}<h1>{% translate 'Main Office' %}</h1>{% elif user.is_staff %}<h1>{{ user.municipality_staff.municipality.name }}</h1>{% endif %}{% endblock %}
           {% block content_subtitle %}{% if subtitle %}<h2>{{ subtitle }}</h2>{% endif %}{% endblock %}
           {% block content %}
             {% block object-tools %}{% endblock %}

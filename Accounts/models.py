@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
-from Anudan.models import NagarPalika
+from Anudan.models import Municipality
 
 
 # Create your models here.
@@ -54,8 +54,6 @@ class PalikaUser(AbstractBaseUser, PermissionsMixin):
     def __str__(self):
         return f'{self.email}'
 
-    def palika(self):
-        return f'{self.palika_staff.palika}'
 
     def address(self):
         return f'{self.profile.address}'
@@ -68,13 +66,21 @@ class PalikaUser(AbstractBaseUser, PermissionsMixin):
             return self.get_username()
         return f'{self.first_name} {self.last_name}'
 
+    class Meta:
+        db_table='Users'
 
-class PalikaStaff(models.Model):
-    user        = models.OneToOneField(PalikaUser, on_delete=models.CASCADE, related_name='palika_staff')
-    palika      = models.ForeignKey(NagarPalika, on_delete=models.CASCADE, related_name='palika_staff')
+
+
+class MunicipalityStaff(models.Model):
+    user        = models.OneToOneField(PalikaUser, on_delete=models.CASCADE, related_name='municipality_staff')
+    municipality      = models.ForeignKey(Municipality, on_delete=models.CASCADE, related_name='municipality_staff')
 
     def __str__(self):
-        return f'{self.user.username} works in {self.palika.name}'
+        return f'{self.user.username} works in {self.municipality.name}'
+
+    class Meta:
+        db_table = 'Staff'
+        verbose_name_plural = 'Staffs'
 
 
 class Profile(models.Model):
@@ -84,5 +90,8 @@ class Profile(models.Model):
 
     def __str__(self):
         return f"{self.user.username}'s Profile"
+
+    class Meta:
+        db_table='Profile'
 
 

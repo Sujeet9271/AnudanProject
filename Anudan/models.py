@@ -1,39 +1,44 @@
 from django.db import models
 from smart_selects.db_fields import ChainedForeignKey
+from django.utils.translation import ugettext_lazy as _
 
-class NagarPalika(models.Model):
-    name            = models.CharField(max_length=150)
-    contact_number  = models.CharField(max_length=10,default=0)
+class Municipality(models.Model):
+    name            = models.CharField(_('name'),max_length=150)
+    contact_number  = models.CharField(_('phonenumber'),max_length=10,default=0)
 
     def __str__(self):
         return f'{self.name}'
 
     class Meta:
-        verbose_name_plural = 'Nagar Palika'
+        db_table='Municipality'
+        verbose_name = _('Municipality')
+        verbose_name_plural = _('Municipalities')
 
 
 class Karyakram(models.Model):
-    nagarpalika     = models.ForeignKey(NagarPalika, on_delete=models.PROTECT)
-    name            = models.CharField(max_length=255)
-    created         = models.DateTimeField(auto_now_add=True)
-    update          = models.DateTimeField(auto_now=True)
+    municipality     = models.ForeignKey(Municipality,on_delete=models.PROTECT,help_text=_('Select Municipality'))
+    name            = models.CharField(_('name'),max_length=255)
+    created         = models.DateTimeField(_('created'),auto_now_add=True)
+    update          = models.DateTimeField(_('update'),auto_now=True)
 
     def __str__(self):
-        return f'{self.name}-{self.nagarpalika.name}'
+        return f'{self.name}-{self.municipality.name}'
     
     class Meta:
-        verbose_name_plural = 'Karyakram'
+        db_table='Karyakram'
+        verbose_name= _('Karyakram')
+        verbose_name_plural = _('Karyakram')
 
 
 class Samagri(models.Model):
-    nagarpalika     = models.ForeignKey(NagarPalika, on_delete=models.PROTECT, help_text='Select Nagar Palika')
+    municipality     = models.ForeignKey(Municipality, on_delete=models.PROTECT, help_text=_('Select Municipality'))
     karyakram       = ChainedForeignKey(Karyakram,
-                                        chained_field="nagarpalika",
-                                        chained_model_field="nagarpalika",
+                                        chained_field="municipality",
+                                        chained_model_field="municipality",
                                         on_delete=models.PROTECT,
-                                            auto_choose=True)
+                                        auto_choose=True)
 
-    name            = models.CharField(max_length=255, help_text='Enter Samagri to Add')
+    name            = models.CharField(_('name'),max_length=255, help_text='Enter Samagri to Add')
 
     def __str__(self):
         return f'{self.name}'
@@ -42,8 +47,10 @@ class Samagri(models.Model):
         return self.karyakram.name
 
     class Meta:
+        db_table='Samagri'
         ordering = ['karyakram']
-        verbose_name_plural = 'Samagri'
+        verbose_name = _('Samagri')
+        verbose_name_plural = _('Samagri')
 
 # Storing file for personal Anudan
 def personal_location(instance, filename):
@@ -55,7 +62,7 @@ def company_location(instance, filename):
 
 
 class AnudanPersonal(models.Model):
-    nagarpalika         = models.ForeignKey(NagarPalika, on_delete=models.PROTECT)
+    municipality         = models.ForeignKey(Municipality, on_delete=models.PROTECT,help_text=_('Select Municipality'))
     choices_approval    = (
                                ('Approved', ('Approved')),
                                ('Not Approved', ('Not Approved'))
@@ -66,8 +73,8 @@ class AnudanPersonal(models.Model):
     nagrikta_number     = models.PositiveBigIntegerField(max_length=12, verbose_name='Nagrikta Number')
     jari_jilla          = models.CharField(max_length=20, verbose_name='Jaari Jilla')
     karyakram           = ChainedForeignKey(Karyakram,
-                                               chained_field="nagarpalika",
-                                               chained_model_field="nagarpalika",
+                                               chained_field="municipality",
+                                               chained_model_field="municipality",
                                                on_delete=models.PROTECT,
                                                    auto_choose=True)        
     nagrikta_front      = models.ImageField(upload_to=personal_location, verbose_name='Nagrikta Front Photo')
@@ -86,10 +93,12 @@ class AnudanPersonal(models.Model):
         return f'{self.name}-{self.karyakram}-{self.samagri}-{self.approval}'
 
     class Meta:
-        verbose_name_plural = 'Anudan Personal'
+        db_table='Anudan_Personal'
+        verbose_name = _('Anudan Personal')
+        verbose_name_plural = _('Anudan Personal')
 
 class AnudanCompany(models.Model):
-    nagarpalika             = models.ForeignKey(NagarPalika, on_delete=models.PROTECT)
+    municipality             = models.ForeignKey(Municipality, on_delete=models.PROTECT,help_text=_('Select Municipality'))
     choices_approval        = (
                                    ('Approved', ('Approved')),
                                    ('Not Approved', ('Not Approved'))
@@ -110,4 +119,6 @@ class AnudanCompany(models.Model):
         return f'{self.firm_name}-{self.registration_no}-{self.approval}'
 
     class Meta:
-        verbose_name_plural = 'Anudan Company'
+        db_table='Anudan_Company'
+        verbose_name = _('Anudan Company')
+        verbose_name_plural = _('Anudan Company')

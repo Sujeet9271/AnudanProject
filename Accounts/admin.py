@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import PalikaUser, PalikaStaff, Profile
+from .models import PalikaUser, MunicipalityStaff, Profile
 from django.contrib.auth.admin import UserAdmin
 from .forms import CustomUserCreationForm, CustomUserChangeForm, PalikaStaffForm, ProfileForm
 from django.utils.translation import gettext_lazy as _
@@ -13,7 +13,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 class PalikaStaffAdmin(admin.TabularInline):
-    model = PalikaStaff
+    model = MunicipalityStaff
 
 class ProfileInline(admin.TabularInline):
     model = Profile
@@ -29,7 +29,7 @@ class UserAdminConfig(UserAdmin):
     form = CustomUserChangeForm
     inlines = [PalikaStaffAdmin,ProfileInline]
     list_display = ['email', 'username', 'first_name', 'last_name', 'address', 'contact_number', 'is_staff', 'is_admin',
-                    'is_superuser', 'palika_staff', ]
+                    'is_superuser', 'municipality_staff', ]
     list_display_links = ['email', 'username']
     readonly_fields = ['last_login', 'date_joined']
 
@@ -54,7 +54,7 @@ class UserAdminConfig(UserAdmin):
         if request.user.is_superuser:
             return qs
         if request.user.is_admin:
-            return qs.filter(palika_staff__palika=request.user.palika_staff.palika.id)
+            return qs.filter(palika_staff__palika=request.user.municipality_staff.municipality.id)
         return qs.filter(id=request.user.id)
 
 
@@ -109,12 +109,12 @@ class ProfileAdmin(admin.ModelAdmin):
 
 
 
-@admin.register(PalikaStaff)
+@admin.register(MunicipalityStaff)
 class PalikaStaffAdmin(admin.ModelAdmin):
-    list_display=['id','user','palika']
+    list_display=['id','user','municipality']
     list_display_links=['id','user']
-    list_filter = ['palika']
-    fields=['user','palika']
+    list_filter = ['municipality']
+    fields=['user','municipality']
     form = PalikaStaffForm
 
 
@@ -127,7 +127,7 @@ class PalikaStaffAdmin(admin.ModelAdmin):
         qs = super(PalikaStaffAdmin, self).get_queryset(request)
         if request.user.is_superuser:
             return qs
-        return qs.filter(palika=request.user.palika_staff.palika)
+        return qs.filter(municipality=request.user.municipality_staff.municiaplity)
 
         
     

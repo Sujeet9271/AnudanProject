@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from django.shortcuts import render,redirect
+from django.utils.translation import ugettext_lazy as _
 
 def index(request):
     return redirect('admin/')
@@ -26,7 +27,7 @@ urlpatterns = [
     path('',index)
 ]
 
-admin.site.site_header='Anudan Project'
-admin.site.site_url = ''
-admin.site.index_title='Home'
-admin.site.site_title='Anudan Project'
+admin.site.site_header=_('Anudan Project')
+admin.site.site_url =_('')
+admin.site.index_title=_('Home')
+admin.site.site_title=_('Anudan Project')
