@@ -35,16 +35,16 @@ class CustomAccountManager(BaseUserManager):
 
 
 class PalikaUser(AbstractBaseUser, PermissionsMixin):
-    email        = models.EmailField(_('Email Address'), unique=True)
-    username     = models.CharField(max_length=30, unique=True)
-    first_name   = models.CharField(max_length=30, blank=True)
-    last_name    = models.CharField(max_length=30, blank=True)
-    created      = models.DateTimeField(default=timezone.now)
-    is_active    = models.BooleanField(default=True)
-    is_staff     = models.BooleanField(default=False)
-    is_admin     = models.BooleanField(default=False)
-    is_superuser = models.BooleanField(default=False)
-    date_joined  = models.DateField(default=timezone.now())
+    email        = models.EmailField(verbose_name=_('email'), unique=True)
+    username     = models.CharField(verbose_name=_('username'),max_length=30, unique=True)
+    first_name   = models.CharField(verbose_name=_('first name'),max_length=30, blank=True)
+    last_name    = models.CharField(verbose_name=_('last name'),max_length=30, blank=True)
+    created      = models.DateTimeField(verbose_name=_('created'),default=timezone.now)
+    is_active    = models.BooleanField(verbose_name=_('is active'),default=True)
+    is_staff     = models.BooleanField(verbose_name=_('is staff'),default=False)
+    is_admin     = models.BooleanField(verbose_name=_('is admin'),default=False)
+    is_superuser = models.BooleanField(verbose_name=_('is superuser'),default=False)
+    date_joined  = models.DateField(verbose_name=_('date joined'),default=timezone.now())
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
@@ -57,9 +57,14 @@ class PalikaUser(AbstractBaseUser, PermissionsMixin):
 
     def address(self):
         return f'{self.profile.address}'
+    address.short_description = _('address')
+
+    
 
     def contact_number(self):
         return f'{self.profile.contact_number}'
+    contact_number.short_description = _('contact number')
+
 
     def get_fullname(self):
         if self.first_name=='':
@@ -68,30 +73,35 @@ class PalikaUser(AbstractBaseUser, PermissionsMixin):
 
     class Meta:
         db_table='Users'
+        verbose_name = _('user')
+        verbose_name_plural = _('users')
 
 
 
 class MunicipalityStaff(models.Model):
-    user        = models.OneToOneField(PalikaUser, on_delete=models.CASCADE, related_name='municipality_staff')
-    municipality      = models.ForeignKey(Municipality, on_delete=models.CASCADE, related_name='municipality_staff')
+    user        = models.OneToOneField(PalikaUser, on_delete=models.CASCADE, related_name='municipality_staff',verbose_name=_('user'),)
+    municipality      = models.ForeignKey(Municipality, on_delete=models.CASCADE, related_name='municipality_staff',verbose_name=_('Municipality'),)
 
     def __str__(self):
         return f'{self.user.username} works in {self.municipality.name}'
 
     class Meta:
         db_table = 'Staff'
-        verbose_name_plural = 'Staffs'
+        verbose_name = _('staff')
+        verbose_name_plural = _('staffs')
 
 
 class Profile(models.Model):
-    user             = models.OneToOneField(PalikaUser, on_delete=models.CASCADE)
-    address          = models.CharField(_('Address'), max_length=150, blank=True, null=True)
-    contact_number   = models.PositiveBigIntegerField(_('Contact Number'), blank=True, null=True)
+    user             = models.OneToOneField(PalikaUser,verbose_name=_('user'), on_delete=models.CASCADE)
+    address          = models.CharField(verbose_name=_('address'), max_length=150, blank=True, null=True)
+    contact_number   = models.PositiveBigIntegerField(verbose_name=_('contact number'), blank=True, null=True)
 
     def __str__(self):
         return f"{self.user.username}'s Profile"
 
     class Meta:
         db_table='Profile'
+        verbose_name = 'Profile'
+        verbose_name_plural = 'Profile'
 
 

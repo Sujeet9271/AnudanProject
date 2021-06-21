@@ -15,17 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from django.shortcuts import render,redirect
+from django.shortcuts import redirect
 from django.utils.translation import ugettext_lazy as _
+from django.conf.urls.i18n import i18n_patterns
 
 def index(request):
     return redirect('admin/')
 
-urlpatterns = [
+urlpatterns = i18n_patterns(
     path('admin/', admin.site.urls),
     path('chaining/', include('smart_selects.urls')),
-    path('',index)
-]
+    prefix_default_language=False
+)
 
 admin.site.site_header=_('Anudan Project')
 admin.site.site_url =_('')

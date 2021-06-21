@@ -1,10 +1,6 @@
 from django.contrib import admin
-
-# Register your models here.
-from django.contrib import admin,messages
-
 from .models import AnudanCompany, Karyakram,Samagri,AnudanPersonal,Municipality
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as _
 from .forms import AnudanPersonalForm,KaryakramForm,SamagriForm,AnudanCompanyForm
 # Register your models here.
 
@@ -33,13 +29,6 @@ class KaryakramAdmin(admin.ModelAdmin):
             return qs
         return qs.filter(municipality=request.user.palika_staff.municipality)
 
-    # def save_model(self, request, obj, form, change):      
-    #     if request.user.is_superuser:
-    #         return super().save_model(request, obj, form, change)
-
-    #     if request.user.is_staff:
-    #         obj.municipality = request.user.palika_staff.municipality
-    #     return super().save_model(request, obj, form, change)
     
     def get_form(self, request,*args, **kwargs):
         form = super(KaryakramAdmin,self).get_form(request,*args, **kwargs)

@@ -2,13 +2,11 @@ from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 from django import forms
 from .models import MunicipalityStaff, PalikaUser, Profile
 from Anudan.models import Municipality
+from django.utils.translation import gettext as _
 
 class CustomUserCreationForm(UserCreationForm):
-    email = forms.EmailField(label='Email')
-    username = forms.CharField(label='Username')
-    password1=forms.CharField(label='Password')
-    password2=forms.CharField(label='Confirm Password')
-
+    email = forms.EmailField(label=_('email'))
+    
     class Meta:
         model = PalikaUser
         fields = ("email","username","password1","password2",)

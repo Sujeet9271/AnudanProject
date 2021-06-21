@@ -2,16 +2,11 @@ from django.contrib import admin
 from .models import PalikaUser, MunicipalityStaff, Profile
 from django.contrib.auth.admin import UserAdmin
 from .forms import CustomUserCreationForm, CustomUserChangeForm, PalikaStaffForm, ProfileForm
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as _
 
 
 
 # Register your models here.
-
-
-
-
-
 class PalikaStaffAdmin(admin.TabularInline):
     model = MunicipalityStaff
 
@@ -34,7 +29,7 @@ class UserAdminConfig(UserAdmin):
     readonly_fields = ['last_login', 'date_joined']
 
     fieldsets = (
-        ('User Details', {'fields': ('email', 'password')}),
+        (_('User Details'), {'fields': ('email', 'password')}),
         (_('Personal info'), {'fields': ('username', 'first_name', 'last_name')}),
         (_('Permissions'), {
             'fields': ('is_staff', 'is_admin', 'groups', 'user_permissions'),
@@ -84,7 +79,7 @@ class ProfileAdmin(admin.ModelAdmin):
 
 
     fieldsets = (
-        ('User Profile', {'fields': ('user','address','contact_number')}),
+       (_('User Profile'), {'fields': ('user','address','contact_number')}),
     )
 
     

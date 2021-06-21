@@ -1,6 +1,6 @@
 from django import forms
 from .models import AnudanCompany, AnudanPersonal,Karyakram, Municipality,Samagri
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext as _
 
 class AnudanPersonalForm(forms.ModelForm):
     municipality = forms.ModelChoiceField(label=_('Municipality'),queryset=Municipality.objects.none())
