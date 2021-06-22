@@ -33,7 +33,9 @@
     <div id="header">
         <div id="branding">
         {% block branding %}
-        
+
+        <h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Anudan Project') }}</a></h1>
+
         {% endblock %}
         </div>
         {% block usertools %}
@@ -64,6 +66,7 @@
         {% block nav-global %}  {% endblock %}
     </div>
     <!-- END Header -->
+
     {% block breadcrumbs %}
     <div class="breadcrumbs">
     <a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>    

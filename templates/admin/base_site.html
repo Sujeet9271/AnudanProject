@@ -1,0 +1,37 @@
+{% extends "admin/base_site.html" %}
+ 
+{% load static %}
+{% load i18n %}
+ 
+<!-- custom filter module -->
+{% load i18n_switcher %}
+ 
+{% block extrahead %}
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}" />
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/custom_admin.css' %}"/> -->
+{% endblock %}
+
+{% block title %}{% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Anudan Project') }}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Anudan Project') }}</a></h1>
+{% endblock %}
+ 
+{% block userlinks %}
+    <a href="{{ request|switch_i18n:'en' }}">
+        English
+    </a> /
+    <a href="{{ request|switch_i18n:'ne' }}">
+        Nepali
+    </a> /
+    {% if user.is_active and user.is_staff %}
+        {% url 'django-admindocs-docroot' as docsroot %}
+        {% if docsroot %}
+            <a href="{{ docsroot }}">{% trans 'Documentation' %}</a> /
+        {% endif %}
+    {% endif %}
+    {% if user.has_usable_password %}
+        <a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a> /
+    {% endif %}
+    <a href="{% url 'admin:logout' %}">{% trans 'Log out' %}</a>
+{% endblock %}

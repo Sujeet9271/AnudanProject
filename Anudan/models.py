@@ -36,7 +36,7 @@ class Samagri(models.Model):
                                         chained_model_field="municipality",
                                         on_delete=models.PROTECT,
                                         auto_choose=True,
-                                        verbose_name='Karyakram'
+                                        verbose_name=_('Karyakram')
                                         )
 
     name            = models.CharField(verbose_name=_('name'),max_length=255,)
@@ -73,16 +73,16 @@ class AnudanPersonal(models.Model):
     name                = models.CharField(max_length=255,verbose_name=_('name'))
     ward                = models.PositiveIntegerField(max_length=2,verbose_name=_('ward'))
     tole                = models.CharField(max_length=255,verbose_name=_('tole'))
-    nagrikta_number     = models.PositiveBigIntegerField(max_length=12, verbose_name='Nagrikta Number')
-    jari_jilla          = models.CharField(max_length=20, verbose_name='Jaari Jilla')
+    nagrikta_number     = models.PositiveBigIntegerField(max_length=12, verbose_name=_('Nagrikta Number'))
+    jari_jilla          = models.CharField(max_length=20, verbose_name=_('Jaari Jilla'))
     karyakram           = ChainedForeignKey(Karyakram,
                                                chained_field="municipality",
                                                chained_model_field="municipality",
                                                on_delete=models.PROTECT,
                                                    auto_choose=True,
-                                                   verbose_name='Karyakram')        
-    nagrikta_front      = models.ImageField(upload_to=personal_location, verbose_name='Nagrikta Front Photo')
-    nagrikta_back       = models.ImageField(upload_to=personal_location, verbose_name='Nagrikta Back Photo')
+                                                   verbose_name=_('Karyakram'))        
+    nagrikta_front      = models.ImageField(upload_to=personal_location, verbose_name=_('Nagrikta Front Photo'))
+    nagrikta_back       = models.ImageField(upload_to=personal_location, verbose_name=_('Nagrikta Back Photo'))
     samagri             = ChainedForeignKey(Samagri,
                                                chained_field="karyakram",
                                                chained_model_field="karyakram",
@@ -111,13 +111,13 @@ class AnudanCompany(models.Model):
     firm_name               = models.CharField(max_length=255,verbose_name=_('firm name'))
     pan_no                  = models.PositiveIntegerField(max_length=2,verbose_name=_('pan no'))
     vat_no                  = models.CharField(max_length=255,verbose_name=_('vat no'))
-    registration_no         = models.PositiveBigIntegerField(max_length=12, verbose_name='Registration Number')
+    registration_no         = models.PositiveBigIntegerField(max_length=12, verbose_name=_('Registration Number'))
     ward                    = models.PositiveIntegerField(max_length=2,verbose_name=_('ward'))
     tole                    = models.CharField(max_length=255,verbose_name=_('tole'))    
-    registered_place        = models.CharField(max_length=20, verbose_name='Jaari Jilla')
-    firm_registration_proof = models.ImageField(upload_to=company_location, verbose_name='Firm Registration Proof')
-    ward_sifaris            = models.ImageField(upload_to=company_location, verbose_name='Ward Sifaris')
-    prastavan               = models.ImageField(upload_to=company_location, verbose_name='Upload Prastavan')
+    registered_place        = models.CharField(max_length=20, verbose_name=_('Jaari Jilla'))
+    firm_registration_proof = models.ImageField(upload_to=company_location, verbose_name=_('Firm Registration Proof'))
+    ward_sifaris            = models.ImageField(upload_to=company_location, verbose_name=_('Ward Sifaris'))
+    prastavan               = models.ImageField(upload_to=company_location, verbose_name=_('Upload Prastavan'))
     approval                = models.CharField(choices=choices_approval, default='Not Approved', max_length=14,verbose_name=_('approval'))
 
     def __str__(self):

@@ -4,6 +4,23 @@ from .models import MunicipalityStaff, PalikaUser, Profile
 from Anudan.models import Municipality
 from django.utils.translation import gettext as _
 
+
+
+class LoginForm(forms.ModelForm):
+
+    email = forms.CharField(widget=forms.TextInput)
+    password = forms.CharField(widget=forms.PasswordInput())
+
+    class Meta:
+        fields = ['email', 'password']  
+
+class OTP(forms.Form):
+
+    otp = forms.IntegerField()
+
+    class Meta:
+        fields = ['otp']        
+
 class CustomUserCreationForm(UserCreationForm):
     email = forms.EmailField(label=_('email'))
     

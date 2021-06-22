@@ -38,7 +38,7 @@ class KaryakramAdmin(admin.ModelAdmin):
 
 @admin.register(Samagri)
 class SamagriAdmin(admin.ModelAdmin):
-    list_display=['id','name','karyakram']
+    list_display=['id','name','karyakram','municipality']
     list_filter=['karyakram','municipality']
     list_display_links=['id','name']
     form = SamagriForm

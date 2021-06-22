@@ -3,13 +3,12 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#: .\AnudaanProject\urls.py:33
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-21 20:25+0545\n"
+"POT-Creation-Date: 2021-06-21 22:42+0545\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,19 +20,19 @@ msgstr ""
 
 #: .\Accounts\admin.py:32
 msgid "User Details"
-msgstr ""
+msgstr "प्रयोगकर्ता"
 
 #: .\Accounts\admin.py:33 .\Anudan\admin.py:73 .\Anudan\admin.py:85
 msgid "Personal info"
-msgstr ""
+msgstr "व्यक्तिगत जानकारी"
 
 #: .\Accounts\admin.py:34 .\Accounts\admin.py:44
 msgid "Permissions"
-msgstr ""
+msgstr "अनुमतिहरू"
 
 #: .\Accounts\admin.py:37
 msgid "Important dates"
-msgstr ""
+msgstr "महत्त्वपूर्ण मितिहरू"
 
 #: .\Accounts\admin.py:40
 msgid "Staff Registration"
@@ -41,7 +40,7 @@ msgstr "कर्मचारीको दर्ता"
 
 #: .\Accounts\admin.py:82
 msgid "User Profile"
-msgstr ""
+msgstr "प्रयोगकर्ताको प्रोफाइल"
 
 #: .\Accounts\apps.py:8
 msgid "accounts"
@@ -53,23 +52,23 @@ msgstr "ईमेल"
 
 #: .\Accounts\models.py:39
 msgid "username"
-msgstr ""
+msgstr "प्रयोगकर्ताको नाम"
 
 #: .\Accounts\models.py:40
 msgid "first name"
-msgstr ""
+msgstr "पहिलो नाम"
 
 #: .\Accounts\models.py:41
 msgid "last name"
-msgstr ""
+msgstr "अन्तिम नाम"
 
 #: .\Accounts\models.py:42 .\Anudan\models.py:21
 msgid "created"
-msgstr ""
+msgstr "सिर्जना गरियो"
 
 #: .\Accounts\models.py:43
 msgid "is active"
-msgstr ""
+msgstr "सक्रिय छ"
 
 #: .\Accounts\models.py:44
 msgid "is staff"
@@ -77,15 +76,15 @@ msgstr "कर्मचारी हो"
 
 #: .\Accounts\models.py:45
 msgid "is admin"
-msgstr ""
+msgstr "प्रशासक हो"
 
 #: .\Accounts\models.py:46
 msgid "is superuser"
-msgstr ""
+msgstr "सुपरयूजर हो"
 
 #: .\Accounts\models.py:47
 msgid "date joined"
-msgstr ""
+msgstr "मिति सामेल भयो"
 
 #: .\Accounts\models.py:60 .\Accounts\models.py:96
 msgid "address"
@@ -97,11 +96,11 @@ msgstr "सम्पर्क नम्बर"
 
 #: .\Accounts\models.py:76 .\Accounts\models.py:82 .\Accounts\models.py:95
 msgid "user"
-msgstr ""
+msgstr "प्रयोगकर्ता"
 
 #: .\Accounts\models.py:77
 msgid "users"
-msgstr ""
+msgstr "प्रयोगकर्ताहरू"
 
 #: .\Accounts\models.py:83 .\Anudan\admin.py:72 .\Anudan\admin.py:84
 #: .\Anudan\admin.py:141 .\Anudan\admin.py:151 .\Anudan\forms.py:6
@@ -121,19 +120,19 @@ msgstr "कर्मचारीहरु"
 
 #: .\AnudaanProject\settings.py:126
 msgid "English"
-msgstr ""
+msgstr "अंग्रेजी"
 
 #: .\AnudaanProject\settings.py:127
 msgid "Nepali"
-msgstr ""
+msgstr "नेपाली"
 
-#: .\AnudaanProject\urls.py:32 .\AnudaanProject\urls.py:35
+#: .\AnudaanProject\urls.py:31 .\AnudaanProject\urls.py:34
 msgid "Anudan Project"
 msgstr "अनुदान परियोजना"
 
-#: .\AnudaanProject\urls.py:34 .\templates\admin\base.html:69
+#: .\AnudaanProject\urls.py:33 .\templates\admin\base.html:69
 msgid "Home"
-msgstr ""
+msgstr "गृहपृष्ठ"
 
 #: .\Anudan\admin.py:74 .\Anudan\admin.py:86 .\Anudan\admin.py:143
 #: .\Anudan\admin.py:153
@@ -142,24 +141,24 @@ msgstr "ठेगाना"
 
 #: .\Anudan\admin.py:75 .\Anudan\admin.py:87
 msgid "Nagrikta Details"
-msgstr ""
+msgstr "नागरिकता विवरण"
 
 #: .\Anudan\admin.py:76 .\Anudan\admin.py:88 .\Anudan\admin.py:144
 #: .\Anudan\admin.py:154
 msgid "Anudan Request"
-msgstr ""
+msgstr "अनुदान अनुरोध"
 
 #: .\Anudan\admin.py:77 .\Anudan\admin.py:145
 msgid "Approval"
-msgstr ""
+msgstr "स्वीकृति"
 
 #: .\Anudan\admin.py:141
 msgid "Select Municipality"
-msgstr ""
+msgstr " नगरपालिका चयन गर्नुहोस्"
 
 #: .\Anudan\admin.py:142 .\Anudan\admin.py:152
 msgid "Firm info"
-msgstr ""
+msgstr "फर्मको जानकारी"
 
 #: .\Anudan\apps.py:8
 msgid "grant"
@@ -168,35 +167,51 @@ msgstr "अनुदान"
 #: .\Anudan\models.py:6 .\Anudan\models.py:20 .\Anudan\models.py:42
 #: .\Anudan\models.py:73
 msgid "name"
-msgstr ""
+msgstr "नाम"
 
 #: .\Anudan\models.py:15
 msgid "Municipalities"
 msgstr "नगरपालिका"
 
-#: .\Anudan\models.py:28 .\Anudan\models.py:29
+#: .\Anudan\models.py:28 .\Anudan\models.py:29 .\Anudan\models.py:83
 msgid "Karyakram"
-msgstr ""
+msgstr " कार्यक्रम"
 
 #: .\Anudan\models.py:49
 msgid "Karyakram name"
-msgstr ""
+msgstr " कार्यक्रमको  नाम"
 
 #: .\Anudan\models.py:55 .\Anudan\models.py:56 .\Anudan\models.py:91
 msgid "Samagri"
-msgstr ""
+msgstr "सामग्री"
 
 #: .\Anudan\models.py:74 .\Anudan\models.py:115
 msgid "ward"
-msgstr ""
+msgstr "वार्ड"
 
 #: .\Anudan\models.py:75 .\Anudan\models.py:116
 msgid "tole"
-msgstr ""
+msgstr "टोल"
+
+#: .\Anudan\models.py:76
+msgid "Nagrikta Number"
+msgstr "नागरिकता नम्बर"
+
+#: .\Anudan\models.py:77 .\Anudan\models.py:117
+msgid "Jaari Jilla"
+msgstr "जारी जिल्ला"
+
+#: .\Anudan\models.py:84
+msgid "Nagrikta Front Photo"
+msgstr "नागरिकता को अगाडि फोटो"
+
+#: .\Anudan\models.py:85
+msgid "Nagrikta Back Photo"
+msgstr "नागरिकता को पछाडि फोटो"
 
 #: .\Anudan\models.py:93 .\Anudan\models.py:121
 msgid "approval"
-msgstr ""
+msgstr "स्वीकृति"
 
 #: .\Anudan\models.py:102 .\Anudan\models.py:103
 msgid "Anudan Personal"
@@ -204,15 +219,31 @@ msgstr "व्यक्तिगत अनुदान"
 
 #: .\Anudan\models.py:111
 msgid "firm name"
-msgstr ""
+msgstr "फर्मको नाम"
 
 #: .\Anudan\models.py:112
 msgid "pan no"
-msgstr ""
+msgstr "प्यान नम्बर"
 
 #: .\Anudan\models.py:113
 msgid "vat no"
-msgstr ""
+msgstr "भ्याट नम्बर"
+
+#: .\Anudan\models.py:114
+msgid "Registration Number"
+msgstr "दर्ता नम्बर"
+
+#: .\Anudan\models.py:118
+msgid "Firm Registration Proof"
+msgstr "फर्म दर्ता फारम"
+
+#: .\Anudan\models.py:119
+msgid "Ward Sifaris"
+msgstr "वार्ड सिफारिस"
+
+#: .\Anudan\models.py:120
+msgid "Upload Prastavan"
+msgstr "अपलोड प्रस्ताव"
 
 #: .\Anudan\models.py:128 .\Anudan\models.py:129
 msgid "Anudan Company"
@@ -220,24 +251,29 @@ msgstr "संस्थागत अनुदान"
 
 #: .\templates\admin\base.html:43
 msgid "Welcome,"
-msgstr ""
+msgstr "स्वागतम्"
 
 #: .\templates\admin\base.html:48
 msgid "View site"
-msgstr ""
+msgstr "साइट हेर्नुहोस्"
 
 #: .\templates\admin\base.html:53
 msgid "Documentation"
-msgstr ""
+msgstr "कागजात"
 
 #: .\templates\admin\base.html:57
 msgid "Change password"
-msgstr ""
+msgstr "पासवर्ड परिवर्तन गर्नुहोस्"
 
 #: .\templates\admin\base.html:59
 msgid "Log out"
+msgstr " लगअफ गर्नुहोस्"
+
+#: .\templates\admin\base.html:70
+#, python-format
+msgid "%(title)s"
 msgstr ""
 
 #: .\templates\admin\base.html:92
 msgid "Main Office"
-msgstr ""
+msgstr "मुख्य कार्यालय"
