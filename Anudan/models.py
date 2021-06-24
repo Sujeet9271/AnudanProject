@@ -79,9 +79,9 @@ class AnudanPersonal(models.Model):
                                ('Approved', ('Approved')),
                                ('Not Approved', ('Not Approved'))
                            )
-    name                = models.CharField(max_length=255,verbose_name=_('name'))
-    ward                = models.PositiveIntegerField(max_length=2,verbose_name=_('ward'))
-    tole                = models.CharField(max_length=255,verbose_name=_('tole'))
+    name                = models.CharField(max_length=255,verbose_name=_('Name'))
+    ward                = models.PositiveIntegerField(max_length=2,verbose_name=_('Ward'))
+    tole                = models.CharField(max_length=255,verbose_name=_('Tole'))
     nagrikta_number     = models.PositiveBigIntegerField(max_length=12, verbose_name=_('Nagrikta Number'))
     jari_jilla          = models.CharField(max_length=20, verbose_name=_('Jaari Jilla'))
     karyakram           = ChainedForeignKey(Karyakram,
@@ -100,7 +100,7 @@ class AnudanPersonal(models.Model):
                                                verbose_name=_('Samagri')
                                                )
     quantity            = models.PositiveSmallIntegerField(default=1)
-    approval            = models.CharField(choices=choices_approval, default='Not Approved', max_length=14,verbose_name=_('approval'))
+    approval            = models.CharField(choices=choices_approval, default='Not Approved', max_length=14,verbose_name=_('Approval'))
 
     
     
@@ -116,28 +116,28 @@ class AnudanPersonal(models.Model):
 
 class AnudanCompany(models.Model):
     fiscal_year         = models.ForeignKey(to='Accounts.FiscalYear',verbose_name=_('Fiscal Year'),on_delete = models.DO_NOTHING,default=1)
-    municipality             = models.ForeignKey(Municipality, on_delete=models.PROTECT)
+    municipality             = models.ForeignKey(Municipality, on_delete=models.PROTECT,verbose_name=_('Municipality'))
     choices_approval        = (
                                    ('Approved', ('Approved')),
                                    ('Not Approved', ('Not Approved'))
                                )
-    firm_name               = models.CharField(max_length=255)
-    pan_no                  = models.PositiveIntegerField(max_length=2)
-    vat_no                  = models.CharField(max_length=255)
-    registration_no         = models.PositiveBigIntegerField(max_length=12, verbose_name='Registration Number')
-    ward                    = models.PositiveIntegerField(max_length=2)
-    tole                    = models.CharField(max_length=255)    
-    registered_place        = models.CharField(max_length=20, verbose_name='Jaari Jilla')
+    firm_name               = models.CharField(max_length=255,verbose_name=_('Firm name'))
+    pan_no                  = models.PositiveIntegerField(max_length=2,verbose_name=_('PAN no'))
+    vat_no                  = models.CharField(max_length=255,verbose_name=_('VAT no'))
+    registration_no         = models.PositiveBigIntegerField(max_length=12, verbose_name=_('Registration Number'))
+    ward                    = models.PositiveIntegerField(max_length=2,verbose_name=_('Ward'))
+    tole                    = models.CharField(max_length=255,verbose_name=_('Tole'))    
+    registered_place        = models.CharField(max_length=20, verbose_name=_('Jaari Jilla'))
     choices_darta                 = (
                                     ('Gharelu',('Gharelu')),
                                     ('Vanijya',('Vanijya'))
                                 )
-    anya_darta              = models.CharField(choices=choices_darta,max_length=50,blank=True,null=True)
-    firm_registration_proof = models.ImageField(upload_to=company_location, verbose_name='Firm Registration Proof')
-    ward_sifaris            = models.ImageField(upload_to=company_location, verbose_name='Ward Sifaris')
-    prastavan               = models.ImageField(upload_to=company_location, verbose_name='Upload Prastavan')
+    anya_darta              = models.CharField(choices=choices_darta,max_length=50,blank=True,null=True,verbose_name=_('Registered as'))
+    firm_registration_proof = models.ImageField(upload_to=company_location, verbose_name=_('Firm Registration Proof'))
+    ward_sifaris            = models.ImageField(upload_to=company_location, verbose_name=_('Ward Sifaris'))
+    prastavan               = models.ImageField(upload_to=company_location, verbose_name=_('Upload Prastavan'))
 
-    approval                = models.CharField(choices=choices_approval, default='Not Approved', max_length=14)
+    approval                = models.CharField(choices=choices_approval, default='Not Approved', max_length=14,verbose_name=_('Approval'))
 
     def __str__(self):
         return f'{self.firm_name}-{self.registration_no}-{self.approval}'

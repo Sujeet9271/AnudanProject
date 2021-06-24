@@ -233,15 +233,15 @@ msgid "Anudan Personal"
 msgstr "व्यक्तिगत अनुदान"
 
 #: .\Anudan\models.py:111
-msgid "firm name"
+msgid "Firm name"
 msgstr "फर्मको नाम"
 
 #: .\Anudan\models.py:112
-msgid "pan no"
+msgid "PAN no"
 msgstr "प्यान नम्बर"
 
 #: .\Anudan\models.py:113
-msgid "vat no"
+msgid "VAT no"
 msgstr "भ्याट नम्बर"
 
 #: .\Anudan\models.py:114

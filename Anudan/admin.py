@@ -157,10 +157,13 @@ class AnudanPersonalAdmin(admin.ModelAdmin):
 
 @admin.register(AnudanCompany)
 class AnudanCompanyAdmin(admin.ModelAdmin):
-    list_display=['firm_name','registration_no','pan_no','vat_no','ward','tole','registered_place','municipality','approval']
+    list_display=['id','firm_name','registration_no','pan_no','vat_no','ward','tole','registered_place','municipality','approval']
     list_display_links=['firm_name','registration_no','pan_no','vat_no']
     list_filter=['approval','ward','tole','municipality']
     form = AnudanCompanyForm
+    list_per_page=10
+    actions = ['approve','disapprove','export_to_csv']
+    # list_max_show_all = 5
     
 
     fieldsets = (
@@ -211,3 +214,19 @@ class AnudanCompanyAdmin(admin.ModelAdmin):
         if obj:
             return self.fieldsets
         return self.add_fieldsets
+
+
+    def export_to_csv(self, request, queryset):
+        
+        response = HttpResponse(content_type='text/csv')
+        response['Content-Disposition'] = f'attachment; filename="books.csv"'
+        writer = csv.writer(response)
+        if 'ne' in request.path:
+            writer.writerow(['नाम','नगरपालिका','टोल','वडा','वडा सिफरिस','प्रस्तावना'])
+        else:
+            writer.writerow(['Name','Municipality','Tole','Ward','Ward Sifaris','Prastavan'])
+        books = queryset.values_list('firm_name','municipality__name','ward','tole','ward_sifaris', 'prastavan')
+        for book in books:
+            writer.writerow(book)
+        return response
+    export_to_csv.short_description = 'Export to csv'

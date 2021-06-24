@@ -17,12 +17,13 @@ class AnudanPersonalForm(forms.ModelForm):
         model = AnudanPersonal
         fields = ['fiscal_year','municipality','name','ward','tole','nagrikta_number','jari_jilla','nagrikta_front','nagrikta_back','karyakram','samagri','quantity']
 
- # Choices = [("Gharelu", "Gharelu"), ("Vanijya", "Vanijya")]
     # anya_darta = forms.ChoiceField(choices=Choices,widget=forms.RadioSelect,)
 
 class AnudanCompanyForm(forms.ModelForm):
     fiscal_year = forms.ModelChoiceField(label=_('Fiscal Year'),queryset=FiscalYear.objects.all())
     municipality = forms.ModelChoiceField(queryset=Municipality.objects.none(),label=_('Municipality'))
+    Choices = [("Gharelu", "Gharelu"), ("Vanijya", "Vanijya")]
+    anya_darta     = forms.ChoiceField(choices=Choices,widget=forms.RadioSelect,required=False,label=_('Registered at'),help_text=_('If any'))
     
 
     def __init__(self, *args,**kwargs):
