@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import PalikaUser, MunicipalityStaff, Profile
+from .models import FiscalYear, PalikaUser, MunicipalityStaff, Profile
 from django.contrib.auth.admin import UserAdmin
 from .forms import CustomUserCreationForm, CustomUserChangeForm, PalikaStaffForm, ProfileForm
 from django.utils.translation import gettext as _
@@ -49,7 +49,7 @@ class UserAdminConfig(UserAdmin):
         if request.user.is_superuser:
             return qs
         if request.user.is_admin:
-            return qs.filter(palika_staff__palika=request.user.municipality_staff.municipality.id)
+            return qs.filter(municipality_staff__municipality=request.user.municipality_staff.municipality.id)
         return qs.filter(id=request.user.id)
 
 
@@ -122,8 +122,10 @@ class PalikaStaffAdmin(admin.ModelAdmin):
         qs = super(PalikaStaffAdmin, self).get_queryset(request)
         if request.user.is_superuser:
             return qs
-        return qs.filter(municipality=request.user.municipality_staff.municiaplity)
+        return qs.filter(municipality=request.user.municipality_staff.municipality)
 
         
     
-
+@admin.register(FiscalYear)
+class FiscalYEarAdmin(admin.ModelAdmin):
+    list_display = ['start_date','end_date']

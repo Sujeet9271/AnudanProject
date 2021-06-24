@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-21 22:42+0545\n"
+"POT-Creation-Date: 2021-06-23 18:32+0545\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,7 +46,7 @@ msgstr "प्रयोगकर्ताको प्रोफाइल"
 msgid "accounts"
 msgstr "खाता"
 
-#: .\Accounts\forms.py:8 .\Accounts\models.py:38
+#: .\Accounts\forms.py:25 .\Accounts\models.py:38
 msgid "email"
 msgstr "ईमेल"
 
@@ -118,19 +118,33 @@ msgstr "कर्मचारी"
 msgid "staffs"
 msgstr "कर्मचारीहरु"
 
-#: .\AnudaanProject\settings.py:126
+#: .\Accounts\views.py:41
+msgid "An OTP is sent to the registered email."
+msgstr ""
+
+#: .\Accounts\views.py:44
+msgid "username or password not correct"
+msgstr ""
+
+#: .\Accounts\views.py:70
+msgid "Invalid OTP, Check your email for new otp"
+msgstr ""
+
+#: .\AnudaanProject\settings.py:129
 msgid "English"
 msgstr "अंग्रेजी"
 
-#: .\AnudaanProject\settings.py:127
+#: .\AnudaanProject\settings.py:130
 msgid "Nepali"
 msgstr "नेपाली"
 
-#: .\AnudaanProject\urls.py:31 .\AnudaanProject\urls.py:34
+#: .\AnudaanProject\urls.py:45 .\AnudaanProject\urls.py:48
+#: .\templates\admin\base.html:37 .\templates\admin\base_site.html:14
+#: .\templates\admin\base_site.html:17
 msgid "Anudan Project"
 msgstr "अनुदान परियोजना"
 
-#: .\AnudaanProject\urls.py:33 .\templates\admin\base.html:69
+#: .\AnudaanProject\urls.py:47 .\templates\admin\base.html:72
 msgid "Home"
 msgstr "गृहपृष्ठ"
 
@@ -173,7 +187,8 @@ msgstr "नाम"
 msgid "Municipalities"
 msgstr "नगरपालिका"
 
-#: .\Anudan\models.py:28 .\Anudan\models.py:29 .\Anudan\models.py:83
+#: .\Anudan\models.py:28 .\Anudan\models.py:29 .\Anudan\models.py:39
+#: .\Anudan\models.py:83
 msgid "Karyakram"
 msgstr " कार्यक्रम"
 
@@ -187,7 +202,7 @@ msgstr "सामग्री"
 
 #: .\Anudan\models.py:74 .\Anudan\models.py:115
 msgid "ward"
-msgstr "वार्ड"
+msgstr "वडा"
 
 #: .\Anudan\models.py:75 .\Anudan\models.py:116
 msgid "tole"
@@ -249,31 +264,61 @@ msgstr "अपलोड प्रस्ताव"
 msgid "Anudan Company"
 msgstr "संस्थागत अनुदान"
 
-#: .\templates\admin\base.html:43
+#: .\templates\admin\base.html:45
 msgid "Welcome,"
 msgstr "स्वागतम्"
 
-#: .\templates\admin\base.html:48
+#: .\templates\admin\base.html:50
 msgid "View site"
 msgstr "साइट हेर्नुहोस्"
 
-#: .\templates\admin\base.html:53
+#: .\templates\admin\base.html:55 .\templates\admin\base_site.html:30
 msgid "Documentation"
 msgstr "कागजात"
 
-#: .\templates\admin\base.html:57
+#: .\templates\admin\base.html:59 .\templates\admin\base_site.html:34
 msgid "Change password"
 msgstr "पासवर्ड परिवर्तन गर्नुहोस्"
 
-#: .\templates\admin\base.html:59
+#: .\templates\admin\base.html:61 .\templates\admin\base_site.html:36
 msgid "Log out"
 msgstr " लगअफ गर्नुहोस्"
 
-#: .\templates\admin\base.html:70
+#: .\templates\admin\base.html:73
 #, python-format
 msgid "%(title)s"
 msgstr ""
 
-#: .\templates\admin\base.html:92
+#: .\templates\admin\base.html:95
 msgid "Main Office"
 msgstr "मुख्य कार्यालय"
+
+#: .\templates\admin\login.html:4 .\templates\admin\login.html:65
+#: .\templates\admin\otp.html:36
+#, fuzzy
+#| msgid "Log out"
+msgid "Log in"
+msgstr " लगअफ गर्नुहोस्"
+
+#: .\templates\admin\login.html:25 .\templates\admin\otp.html:23
+msgid "Please correct the error below."
+msgstr ""
+
+#: .\templates\admin\login.html:25 .\templates\admin\otp.html:23
+msgid "Please correct the errors below."
+msgstr ""
+
+#: .\templates\admin\login.html:41
+#, python-format
+msgid ""
+"You are authenticated as %(username)s, but are not authorized to access this "
+"page. Would you like to login to a different account?"
+msgstr ""
+
+#: .\templates\admin\login.html:61
+msgid "Forgotten your password or username?"
+msgstr ""
+
+#: .\templates\admin\otp.html:3
+msgid "Verify OTP"
+msgstr ""

@@ -105,3 +105,28 @@ class Profile(models.Model):
         verbose_name_plural = 'Profile'
 
 
+class Sector(models.Model):
+    municipality = models.ForeignKey(Municipality,verbose_name=_('Municipality'), on_delete=models.CASCADE)
+    name = models.CharField(max_length=150,verbose_name=_('name'))
+
+    def __str__(self):
+        return f"{self.name}-{self.municipality.name}"
+
+    class Meta:
+        db_table='Sector'
+        verbose_name = _('Sector')
+        verbose_name_plural = _('Sectors')
+
+
+class FiscalYear(models.Model):
+    start_date = models.DateField()
+    end_date = models.DateField()
+
+    def __str__(self):
+        return f'{self.start_date}/{self.end_date}'
+
+    class Meta:
+        db_table = 'Fiscal_Year'
+        verbose_name = _('Fiscal Year')
+        verbose_name_plural = _('Fiscal Year')
+

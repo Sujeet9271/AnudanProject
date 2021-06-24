@@ -92,11 +92,8 @@ WSGI_APPLICATION = 'AnudaanProject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': config('DATABASE_ENGINE'),
-        'NAME': config('DATABASE_NAME'),
-        'USER':config('DATABASE_USER'),
-        'PASSWORD':config('DATABASE_PASSWORD'),
-        'HOST':config('DATABASE_HOST')
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'dbsqlite3',
     }
 }
 
@@ -148,9 +145,9 @@ STATICFILES_DIRS = [BASE_DIR/'static']
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True     # opional, as this will log you out when browser is closed
-SESSION_COOKIE_AGE = 60                   # 0r 5 * 60, same thing
-SESSION_SAVE_EVERY_REQUEST = True  
+# SESSION_EXPIRE_AT_BROWSER_CLOSE = True     # opional, as this will log you out when browser is closed
+# SESSION_COOKIE_AGE = 60                   # 0r 5 * 60, same thing
+# SESSION_SAVE_EVERY_REQUEST = True  
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR/'media'

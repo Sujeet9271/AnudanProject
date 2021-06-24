@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate,login
 import random
 from django.core.mail import EmailMessage
 import threading
-
+from django.utils.translation import gettext as _
 class EmailThread(threading.Thread):
 
     def __init__(self,email):
@@ -38,10 +38,10 @@ def generate_otp(request):
                 otp = random.randint(100000,999999)
                 request.session['otp'] = otp
                 send(email=user.email,otp=otp)                
-                messages.success(request,'An OTP is sent to the registered email.')
+                messages.success(request,_('An OTP is sent to the registered email.'))
                 return redirect('otp')
         else:
-            messages.error(request,'username or password not correct')
+            messages.error(request,_('username or password not correct'))
             return redirect('admin:login')    
                 
     else:
@@ -67,6 +67,6 @@ def otp(request):
             otp = random.randint(100000,999999)
             request.session['otp'] = otp
             send(email=user.email,otp=otp)
-            messages.error(request,'Invalid OTP, Check your email for new otp')
+            messages.error(request,_('Invalid OTP, Check your email for new otp'))
     return render(request,'admin/otp.html')
             
