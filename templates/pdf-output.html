@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <style>
+      @page {
+        size: A4;
+        background: url("{% static 'PDF_Background.png' %}") no-repeat center center fixed;
+                @frame content_frame {
+                      left: 50pt;
+                      width: 512pt;
+                      top: 50pt;
+                      height: 692pt;
+                      -pdf-frame-border: 1; /* for debugging the layout */
+          
+        }
+      }
+
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      th,
+      td {
+        text-align: center;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+    </style>
+    <title>Anudan Company|Anudan Project</title>
+  </head>
+  <body style="background-image: url( 'http://127.0.0.1:8000/static/PDF_Background.png/');">
+    <div>
+      <table>
+        <thead>
+          <th>Firm Name</th>
+          <th>Municipality</th>
+          <th>Ward</th>
+          <th>Tole</th>
+          <!-- <th>Karyakram</th>
+                  <th>Samagri</th>
+                  <th>Quantity</th> -->
+        </thead>
+        <tbody>
+          {% for data in queryset %}
+          <tr>
+            <td>{{data.firm_name}}</td>
+            <td>{{data.municipality.name}}</td>
+            <td>{{data.ward}}</td>
+            <td>{{data.tole}}</td>
+          </tr>
+
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

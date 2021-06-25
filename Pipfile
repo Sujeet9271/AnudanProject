@@ -10,6 +10,7 @@ django-smart-selects = "*"
 django-heroku = "*"
 gunicorn = "*"
 python-decouple = "*"
+xhtml2pdf = "*"
 
 [dev-packages]
 

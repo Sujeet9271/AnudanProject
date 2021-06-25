@@ -37,10 +37,11 @@ def generate_otp(request):
                 request.session['password'] = password
                 otp = random.randint(100000,999999)
                 request.session['otp'] = otp
-                send(email=user.email,otp=otp)                
-                messages.success(request,_('An OTP is sent to the registered email.'))
+                login(request,user)
+                # send(email=user.email,otp=otp)                
+                # messages.success(request,_('An OTP is sent to the registered email.'))
                 # login(request,user)
-                return redirect('otp')
+                return redirect('admin:index')
         else:
             messages.error(request,_('username or password not correct'))
             return redirect('admin:login')    

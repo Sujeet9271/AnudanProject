@@ -48,7 +48,8 @@ class PalikaStaffForm(forms.ModelForm):
     def __init__(self,*args,**kwargs):
         super(PalikaStaffForm,self).__init__(*args,**kwargs)        
         self.fields['municipality'].queryset = Municipality.objects.all().filter(id=self.current_user.municipality_staff.municipality.id) if not self.current_user.is_superuser else Municipality.objects.all()
-        self.fields['user'].queryset = PalikaUser.objects.all() if self.current_user.is_superuser else PalikaUser.objects.all().filter(palika_staff__palika=self.current_user.municipality_staff.municipality)
+        self.fields['municipality'].initial = Municipality.objects.get(id = self.current_user.municipality_staff.municipality.id) if not self.current_user.is_superuser else None
+        self.fields['user'].queryset = PalikaUser.objects.all() if self.current_user.is_superuser else PalikaUser.objects.all().filter(municipality_staff__municipality=self.current_user.municipality_staff.municipality)
         
 
     class Meta:

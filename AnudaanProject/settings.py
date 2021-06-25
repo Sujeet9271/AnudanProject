@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'django_heroku',
     'smart_selects',
     'Accounts',
-    'Anudan'
+    'Anudan',
+    'Municipality'
 ]
 
 AUTH_USER_MODEL='Accounts.PalikaUser'

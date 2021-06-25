@@ -1,22 +1,22 @@
+from functools import WRAPPER_UPDATES
+
+from django.db.models.base import ModelState
+from Accounts.models import FiscalYear
 from django.db import models
 from smart_selects.db_fields import ChainedForeignKey
 from django.utils.translation import gettext_lazy as _
+from Municipality.models import Municipality, Sector
 
-class Municipality(models.Model):
-    name            = models.CharField(verbose_name=_('name'),max_length=150)
-    contact_number  = models.CharField(verbose_name=_('contact number'),max_length=10,default=0)
-
-    def __str__(self):
-        return f'{self.name}'
-
-    class Meta:
-        db_table='Municipality'
-        verbose_name = _('Municipality')
-        verbose_name_plural = _('Municipalities')
 
 
 class Karyakram(models.Model):
     municipality     = models.ForeignKey(Municipality,on_delete=models.PROTECT,verbose_name=_('Municipality'))
+    sector           = ChainedForeignKey(Sector,chained_field="municipality",
+                                        chained_model_field="municipality",
+                                        on_delete=models.PROTECT,
+                                        auto_choose=True,
+                                        verbose_name=_('Sector'),default=1)
+
     name            = models.CharField(verbose_name=_('name'),max_length=255)
     created         = models.DateTimeField(verbose_name=_('created'),auto_now_add=True)
 
@@ -80,18 +80,27 @@ class AnudanPersonal(models.Model):
                                ('Not Approved', ('Not Approved'))
                            )
     name                = models.CharField(max_length=255,verbose_name=_('Name'))
-    ward                = models.PositiveIntegerField(max_length=2,verbose_name=_('Ward'))
+    ward                = models.PositiveIntegerField(verbose_name=_('Ward'))
     tole                = models.CharField(max_length=255,verbose_name=_('Tole'))
-    nagrikta_number     = models.PositiveBigIntegerField(max_length=12, verbose_name=_('Nagrikta Number'))
+    nagrikta_number     = models.PositiveBigIntegerField(verbose_name=_('Nagrikta Number'))
+    nagrikta_front      = models.ImageField(upload_to=personal_location, verbose_name=_('Nagrikta Front Photo'))
+    nagrikta_back       = models.ImageField(upload_to=personal_location, verbose_name=_('Nagrikta Back Photo'),blank = True)
     jari_jilla          = models.CharField(max_length=20, verbose_name=_('Jaari Jilla'))
+
+
+    sector           = ChainedForeignKey(Sector,chained_field="municipality",
+                                        chained_model_field="municipality",
+                                        on_delete=models.PROTECT,
+                                        auto_choose=True,
+                                        verbose_name=_('Sector'),default=1)
+
     karyakram           = ChainedForeignKey(Karyakram,
-                                               chained_field="municipality",
-                                               chained_model_field="municipality",
+                                               chained_field="sector",
+                                               chained_model_field="sector",
                                                on_delete=models.PROTECT,
                                                    auto_choose=True,
                                                    verbose_name=_('Karyakram'))        
-    nagrikta_front      = models.ImageField(upload_to=personal_location, verbose_name=_('Nagrikta Front Photo'))
-    nagrikta_back       = models.ImageField(upload_to=personal_location, verbose_name=_('Nagrikta Back Photo'),blank = True)
+    
     samagri             = ChainedForeignKey(Samagri,
                                                chained_field="karyakram",
                                                chained_model_field="karyakram",
@@ -115,22 +124,22 @@ class AnudanPersonal(models.Model):
 
 
 class AnudanCompany(models.Model):
-    fiscal_year         = models.ForeignKey(to='Accounts.FiscalYear',verbose_name=_('Fiscal Year'),on_delete = models.DO_NOTHING,default=1)
-    municipality             = models.ForeignKey(Municipality, on_delete=models.PROTECT,verbose_name=_('Municipality'))
+    fiscal_year             = models.ForeignKey(to='Accounts.FiscalYear',verbose_name=_('Fiscal Year'),on_delete = models.DO_NOTHING,default=1)
+    municipality            = models.ForeignKey(Municipality, on_delete=models.PROTECT,verbose_name=_('Municipality'))
     choices_approval        = (
                                    ('Approved', ('Approved')),
                                    ('Not Approved', ('Not Approved'))
                                )
     firm_name               = models.CharField(max_length=255,verbose_name=_('Firm name'))
-    pan_no                  = models.PositiveIntegerField(max_length=2,verbose_name=_('PAN no'))
-    vat_no                  = models.CharField(max_length=255,verbose_name=_('VAT no'))
-    registration_no         = models.PositiveBigIntegerField(max_length=12, verbose_name=_('Registration Number'))
-    ward                    = models.PositiveIntegerField(max_length=2,verbose_name=_('Ward'))
+    pan_no                  = models.PositiveBigIntegerField(verbose_name=_('PAN no'),)
+    vat_no                  = models.PositiveBigIntegerField(verbose_name=_('VAT no'))
+    registration_no         = models.PositiveBigIntegerField(verbose_name=_('Registration Number'))
+    ward                    = models.PositiveSmallIntegerField(verbose_name=_('Ward'))
     tole                    = models.CharField(max_length=255,verbose_name=_('Tole'))    
     registered_place        = models.CharField(max_length=20, verbose_name=_('Jaari Jilla'))
     choices_darta                 = (
                                     ('Gharelu',('Gharelu')),
-                                    ('Vanijya',('Vanijya'))
+                                    ('Banijya',('Banijya'))
                                 )
     anya_darta              = models.CharField(choices=choices_darta,max_length=50,blank=True,null=True,verbose_name=_('Registered as'))
     firm_registration_proof = models.ImageField(upload_to=company_location, verbose_name=_('Firm Registration Proof'))
@@ -147,3 +156,46 @@ class AnudanCompany(models.Model):
         verbose_name = _('Anudan Company')
         verbose_name_plural = _('Anudan Company')
 
+# class AnudanCompany(models.Model):
+#     municipality             = models.ForeignKey(Municipality, on_delete=models.PROTECT)
+#     fiscal_year  = models.ForeignKey(FiscalYear,on_delete=models.DO_NOTHING)
+#     choices_approval        = (
+#                                    ('Approved', ('Approved')),
+#                                    ('Not Approved', ('Not Approved'))
+#                                )
+#     firm_name               = models.CharField(max_length=255)
+#     pan_no                  = models.PositiveIntegerField(max_length=2)
+#     vat_no                  = models.CharField(max_length=255)
+#     registration_no         = models.PositiveBigIntegerField(max_length=12, verbose_name='Registration Number')
+#     ward                    = models.PositiveIntegerField(max_length=2)
+#     tole                    = models.CharField(max_length=255)    
+#     registered_place        = models.CharField(max_length=20, verbose_name='Jaari Jilla')
+#     firm_registration_proof = models.ImageField(upload_to=company_location, verbose_name='Firm Registration Proof')
+#     choices_darta           = (
+#                                     ('Gharelu',('Gharelu')),
+#                                     ('Banijya',('Banijya'))
+#                                 )
+#     anya_darta              = models.CharField(choices=choices_darta,max_length=50,blank=True,null=True,verbose_name=_('Registered as'))
+#     ward_sifaris            = models.ImageField(upload_to=company_location, verbose_name='Ward Sifaris')
+#     prastavan               = models.ImageField(upload_to=company_location, verbose_name='Upload Prastavan')
+#     approval                = models.CharField(choices=choices_approval, default='Not Approved', max_length=14)
+
+#     def __str__(self):
+#         return f'{self.firm_name}-{self.registration_no}-{self.approval}'
+
+#     class Meta:
+#         db_table = 'Anudan_Company'
+#         verbose_name_plural = 'Anudan Company'
+
+
+class MedicineRequest(models.Model):
+    municipality    =   models.ForeignKey(Municipality,on_delete=models.DO_NOTHING,verbose_name=_('Municipality'))
+    name    = models.CharField(verbose_name=_('Name'),max_length=150)
+    ward    = models.PositiveSmallIntegerField(verbose_name=_('Ward'))
+    tole    = models.CharField(verbose_name=_('Tole'),max_length=150)
+    medicine    = models.CharField(verbose_name=_('Medicine'),max_length=150)
+    quantity    = models.PositiveSmallIntegerField(_('Quantity'))  
+
+
+    def __str__(self):
+        return f'{self.ward}-{self.tole}-{self.name}-{self.medicine}-{self.quantity}'

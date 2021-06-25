@@ -2,7 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
-from Anudan.models import Municipality
+from Municipality.models import Municipality
 
 
 # Create your models here.
@@ -105,17 +105,7 @@ class Profile(models.Model):
         verbose_name_plural = 'Profile'
 
 
-class Sector(models.Model):
-    municipality = models.ForeignKey(Municipality,verbose_name=_('Municipality'), on_delete=models.CASCADE)
-    name = models.CharField(max_length=150,verbose_name=_('name'))
 
-    def __str__(self):
-        return f"{self.name}-{self.municipality.name}"
-
-    class Meta:
-        db_table='Sector'
-        verbose_name = _('Sector')
-        verbose_name_plural = _('Sectors')
 
 
 class FiscalYear(models.Model):
