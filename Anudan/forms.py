@@ -2,7 +2,7 @@ from django import forms
 from .models import AnudanCompany, AnudanPersonal,Karyakram,Samagri
 from django.utils.translation import gettext_lazy as _
 from Accounts.models import FiscalYear
-from Municipality.models import Municipality,Sector
+from Municipality.models import Municipality
 
 
 class AnudanPersonalForm(forms.ModelForm):
@@ -15,10 +15,10 @@ class AnudanPersonalForm(forms.ModelForm):
         super(AnudanPersonalForm,self).__init__(*args,**kwargs)
         self.fields['municipality'].queryset = Municipality.objects.filter(id = self.current_user.municipality_staff.municipality.id) if not self.current_user.is_superuser else Municipality.objects.all()
         self.fields['municipality'].initial  = Municipality.objects.get(id=self.current_user.municipality_staff.municipality.id) if not self.current_user.is_superuser else None
-    
+        self.fields['fiscal_year'].initial  = FiscalYear.objects.latest('id')
     class Meta:
         model = AnudanPersonal
-        fields = ['fiscal_year','municipality','name','ward','tole','nagrikta_number','jari_jilla','nagrikta_front','nagrikta_back','sector','karyakram','samagri','quantity']
+        fields = ['fiscal_year','municipality','name','ward','tole','nagrikta_number','contact_number','jari_jilla','nagrikta_front','nagrikta_back','sector','karyakram','samagri','quantity']
 
 
         
@@ -43,7 +43,8 @@ class AnudanPersonalForm(forms.ModelForm):
 
 
 class KaryakramForm(forms.ModelForm):
-    municipality = forms.ModelChoiceField(label=_('Municipality'),queryset=Municipality.objects.none(),initial=0)    
+    municipality = forms.ModelChoiceField(label=_('Municipality'),queryset=Municipality.objects.none())   
+     
 
     def __init__(self, *args,**kwargs):
         super(KaryakramForm,self).__init__(*args,**kwargs)
@@ -64,13 +65,14 @@ class SamagriForm(forms.ModelForm):
 
     
 class AnudanCompanyForm(forms.ModelForm):
-    municipality = forms.ModelChoiceField(queryset=Municipality.objects.none())
-    fiscal_year = forms.ModelChoiceField(queryset=FiscalYear.objects.all())
+    municipality = forms.ModelChoiceField(queryset=Municipality.objects.none(),label=_('Municipality'))
+    fiscal_year = forms.ModelChoiceField(queryset=FiscalYear.objects.all(),label=_('Fiscal Year'))
 
     def __init__(self, *args,**kwargs):
         super(AnudanCompanyForm,self).__init__(*args,**kwargs)
         self.fields['municipality'].queryset = Municipality.objects.filter(id = self.current_user.municipality_staff.municipality.id) if not self.current_user.is_superuser else Municipality.objects.all()
         self.fields['municipality'].initial = Municipality.objects.get(id = self.current_user.municipality_staff.municipality.id) if not self.current_user.is_superuser else None
+        self.fields['fiscal_year'].initial  = FiscalYear.objects.latest('id')
 
 
     class Meta:

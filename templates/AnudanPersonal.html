@@ -44,23 +44,29 @@
     <div>
       <table>
         <thead>
-          <th>Firm Name</th>
+          <th>Name</th>
           <th>Municipality</th>
           <th>Ward</th>
           <th>Tole</th>
-          <!-- <th>Karyakram</th>
+          <td>Sector</td>
+          <th>Karyakram</th>
                   <th>Samagri</th>
-                  <th>Quantity</th> -->
+                  <th>Quantity</th>
+                  <th>Approval</th>
         </thead>
         <tbody>
           {% for data in queryset %}
           <tr>
-            <td>{{data.firm_name}}</td>
+            <td>{{data.name}}</td>
             <td>{{data.municipality.name}}</td>
-            <td>{{data.ward}}</td>
+            <td>{{data.ward.name}}</td>
             <td>{{data.tole}}</td>
+            <td>{{data.sector.name}}</td>
+            <td>{{data.karyakram.name}}</td>
+            <td>{{data.samagri.name}}</td>
+            <td>{{data.quantity}}</td>
+            <td>{{data.approval}}</td>
           </tr>
-
           {% endfor %}
         </tbody>
       </table>

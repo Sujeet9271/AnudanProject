@@ -44,7 +44,7 @@ class PalikaUser(AbstractBaseUser, PermissionsMixin):
     is_staff     = models.BooleanField(verbose_name=_('is staff'),default=False)
     is_admin     = models.BooleanField(verbose_name=_('is admin'),default=False)
     is_superuser = models.BooleanField(verbose_name=_('is superuser'),default=False)
-    date_joined  = models.DateField(verbose_name=_('date joined'),default=timezone.now())
+    date_joined  = models.DateField(verbose_name=_('date joined'),auto_now_add=True,auto_now=False)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
@@ -56,13 +56,13 @@ class PalikaUser(AbstractBaseUser, PermissionsMixin):
 
 
     def address(self):
-        return f'{self.profile.address}'
+        return f'{self.Profile.address}'
     address.short_description = _('address')
 
     
 
     def contact_number(self):
-        return f'{self.profile.contact_number}'
+        return f'{self.Profile.contact_number}'
     contact_number.short_description = _('contact number')
 
 
@@ -92,7 +92,7 @@ class MunicipalityStaff(models.Model):
 
 
 class Profile(models.Model):
-    user             = models.OneToOneField(PalikaUser,verbose_name=_('user'), on_delete=models.CASCADE)
+    user             = models.OneToOneField(PalikaUser,verbose_name=_('user'), on_delete=models.CASCADE,related_name='Profile')
     address          = models.CharField(verbose_name=_('address'), max_length=150, blank=True, null=True)
     contact_number   = models.PositiveBigIntegerField(verbose_name=_('contact number'), blank=True, null=True)
 

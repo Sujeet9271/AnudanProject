@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 from django import forms
-from .models import MunicipalityStaff, PalikaUser, Profile
+from django.forms import fields
+from .models import FiscalYear, MunicipalityStaff, PalikaUser, Profile
 from Anudan.models import Municipality
 from django.utils.translation import gettext as _
 
@@ -71,4 +72,11 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = ['user','address','contact_number']
 
+class FiscalYearForm(forms.ModelForm):
+    start_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    end_date    = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+
+    class Meta:
+        model = FiscalYear
+        fields = ['start_date','end_date']
 
