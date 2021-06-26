@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 from django import forms
-from .models import MunicipalityStaff, PalikaUser, Profile
+from django.forms import fields
+from .models import FiscalYear, MunicipalityStaff, PalikaUser, Profile
 from Anudan.models import Municipality
 from django.utils.translation import gettext as _
 
@@ -48,7 +49,8 @@ class PalikaStaffForm(forms.ModelForm):
     def __init__(self,*args,**kwargs):
         super(PalikaStaffForm,self).__init__(*args,**kwargs)        
         self.fields['municipality'].queryset = Municipality.objects.all().filter(id=self.current_user.municipality_staff.municipality.id) if not self.current_user.is_superuser else Municipality.objects.all()
-        self.fields['user'].queryset = PalikaUser.objects.all() if self.current_user.is_superuser else PalikaUser.objects.all().filter(palika_staff__palika=self.current_user.municipality_staff.municipality)
+        self.fields['municipality'].initial = Municipality.objects.get(id = self.current_user.municipality_staff.municipality.id) if not self.current_user.is_superuser else None
+        self.fields['user'].queryset = PalikaUser.objects.all() if self.current_user.is_superuser else PalikaUser.objects.all().filter(municipality_staff__municipality=self.current_user.municipality_staff.municipality)
         
 
     class Meta:
@@ -70,4 +72,11 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = ['user','address','contact_number']
 
+class FiscalYearForm(forms.ModelForm):
+    start_date = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+    end_date    = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}))
+
+    class Meta:
+        model = FiscalYear
+        fields = ['start_date','end_date']
 

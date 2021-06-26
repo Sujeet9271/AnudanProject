@@ -297,7 +297,7 @@ msgstr "मुख्य कार्यालय"
 #: .\templates\admin\otp.html:36
 #, fuzzy
 #| msgid "Log out"
-msgid "Log in"
+msgid "Log out"
 msgstr " लगअफ गर्नुहोस्"
 
 #: .\templates\admin\login.html:25 .\templates\admin\otp.html:23
