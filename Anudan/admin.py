@@ -145,7 +145,7 @@ class AnudanPersonalAdmin(admin.ModelAdmin):
     fieldsets = (
         (_('Fiscal Year'),{'fields':('fiscal_year',),'classes':('wide',)}),
         (_('Municipality'), {'fields': ('municipality',),'classes':("wide",),'description':_('Select Municipality')}),
-        (_('Personal info'), {'fields': ( 'name','contact_number'),'classes':("wide",),'description':_('Enter Your Name')}),
+        (_('Personal info'), {'fields': ( 'name','contact_number',),'classes':("wide",),'description':_('Enter Your Name')}),
         (_('Address'), {'fields': ('ward', 'tole',),'classes':("wide",),'description':_('Enter Your Address')}),
         (_('Nagrikta Details'), {'fields': ('nagrikta_number', 'jari_jilla','nagrikta_front','nagrikta_back'),'classes':("wide",),'description':_('Enter Your citizenship details')}),
         (_('Anudan Request'),{'fields':('sector','karyakram','samagri','quantity'),'classes':("wide",),'description':_('Select Karyakram and Samagri')}),
@@ -157,7 +157,7 @@ class AnudanPersonalAdmin(admin.ModelAdmin):
     add_fieldsets = (
         (_('Fiscal Year'),{'fields':('fiscal_year',),'classes':('wide',)}),
         (_('Municipality'), {'fields': ('municipality',),'classes':("wide",),'description':_('Select Municipality')}),
-        (_('Personal info'), {'fields': ( 'name','contact_number'),'classes':("wide",),'description':_('Enter Your Name')}),
+        (_('Personal info'), {'fields': ( 'name','contact_number',),'classes':("wide",),'description':_('Enter Your Name')}),
         (_('Address'), {'fields': ('ward', 'tole',),'classes':("wide",),'description':_('Enter Your Address')}),
         (_('Nagrikta Details'), {'fields': ('nagrikta_number', 'jari_jilla','nagrikta_front','nagrikta_back'),'classes':("wide",),'description':_('Enter Your citizenship details')}),
         (_('Anudan Request'),{'fields':('sector','karyakram','samagri','quantity'),'classes':("wide",),'description':_('Select Karyakram and Samagri')}),
@@ -262,7 +262,7 @@ class AnudanCompanyAdmin(admin.ModelAdmin):
 
     add_fieldsets = (
         (_('Fiscal Year'),{'fields':('fiscal_year',)}),
-        (_('Nagar Palika'), {'fields': ('municipality'),'classes':("wide",),'description':_('Select Municipality')}),
+        (_('Nagar Palika'), {'fields': ('municipality',),'classes':("wide",),'description':_('Select Municipality')}),
         (_('Firm info'), {'fields': ( 'firm_name','contact_number','pan_no','vat_no','registration_no','registered_place','firm_registration_proof','anya_darta'),'classes':("wide",),'description':_('About Firm')}),
         (_('Address'), {'fields': ('ward', 'tole',),'classes':("wide",),'description':_('Enter Your Address')}),
         (_('Anudan Request'),{'fields':('sector','karyakram','ward_sifaris','prastavan'),'classes':("wide",),'description':_('Select Karyakram')}),
