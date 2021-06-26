@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-23 18:32+0545\n"
+"POT-Creation-Date: 2021-06-26 17:53+0545\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,27 +18,28 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: .\Accounts\admin.py:32
+#: .\Accounts\admin.py:99
 msgid "User Details"
 msgstr "प्रयोगकर्ता"
 
-#: .\Accounts\admin.py:33 .\Anudan\admin.py:73 .\Anudan\admin.py:85
+#: .\Accounts\admin.py:100 .\Anudan\admin.py:148 .\Anudan\admin.py:160
+#: .\Anudan\admin.py:170
 msgid "Personal info"
 msgstr "व्यक्तिगत जानकारी"
 
-#: .\Accounts\admin.py:34 .\Accounts\admin.py:44
+#: .\Accounts\admin.py:101 .\Accounts\admin.py:112
 msgid "Permissions"
 msgstr "अनुमतिहरू"
 
-#: .\Accounts\admin.py:37
+#: .\Accounts\admin.py:104
 msgid "Important dates"
 msgstr "महत्त्वपूर्ण मितिहरू"
 
-#: .\Accounts\admin.py:40
+#: .\Accounts\admin.py:109
 msgid "Staff Registration"
 msgstr "कर्मचारीको दर्ता"
 
-#: .\Accounts\admin.py:82
+#: .\Accounts\admin.py:188
 msgid "User Profile"
 msgstr "प्रयोगकर्ताको प्रोफाइल"
 
@@ -46,7 +47,7 @@ msgstr "प्रयोगकर्ताको प्रोफाइल"
 msgid "accounts"
 msgstr "खाता"
 
-#: .\Accounts\forms.py:25 .\Accounts\models.py:38
+#: .\Accounts\forms.py:26 .\Accounts\models.py:38
 msgid "email"
 msgstr "ईमेल"
 
@@ -62,7 +63,8 @@ msgstr "पहिलो नाम"
 msgid "last name"
 msgstr "अन्तिम नाम"
 
-#: .\Accounts\models.py:42 .\Anudan\models.py:21
+#: .\Accounts\models.py:42 .\Anudan\models.py:17 .\Anudan\models.py:121
+#: .\Anudan\models.py:182 .\Anudan\models.py:219
 msgid "created"
 msgstr "सिर्जना गरियो"
 
@@ -90,7 +92,7 @@ msgstr "मिति सामेल भयो"
 msgid "address"
 msgstr "ठेगाना"
 
-#: .\Accounts\models.py:66 .\Accounts\models.py:97 .\Anudan\models.py:7
+#: .\Accounts\models.py:66 .\Accounts\models.py:97
 msgid "contact number"
 msgstr "सम्पर्क नम्बर"
 
@@ -102,11 +104,12 @@ msgstr "प्रयोगकर्ता"
 msgid "users"
 msgstr "प्रयोगकर्ताहरू"
 
-#: .\Accounts\models.py:83 .\Anudan\admin.py:72 .\Anudan\admin.py:84
-#: .\Anudan\admin.py:141 .\Anudan\admin.py:151 .\Anudan\forms.py:6
-#: .\Anudan\forms.py:20 .\Anudan\forms.py:34 .\Anudan\forms.py:47
-#: .\Anudan\models.py:14 .\Anudan\models.py:19 .\Anudan\models.py:33
-#: .\Anudan\models.py:68 .\Anudan\models.py:106
+#: .\Accounts\models.py:83 .\Anudan\admin.py:147 .\Anudan\admin.py:159
+#: .\Anudan\admin.py:168 .\Anudan\forms.py:9 .\Anudan\forms.py:46
+#: .\Anudan\forms.py:68 .\Anudan\models.py:9 .\Anudan\models.py:78
+#: .\Anudan\models.py:139 .\Anudan\models.py:208 .\Municipality\apps.py:8
+#: .\Municipality\models.py:18 .\Municipality\models.py:22
+#: .\Municipality\models.py:35
 msgid "Municipality"
 msgstr "नगरपालिका"
 
@@ -118,23 +121,26 @@ msgstr "कर्मचारी"
 msgid "staffs"
 msgstr "कर्मचारीहरु"
 
-#: .\Accounts\views.py:41
-msgid "An OTP is sent to the registered email."
+#: .\Accounts\models.py:120 .\Accounts\models.py:121 .\Anudan\admin.py:146
+#: .\Anudan\admin.py:158 .\Anudan\admin.py:169 .\Anudan\admin.py:254
+#: .\Anudan\admin.py:264 .\Anudan\admin.py:273 .\Anudan\forms.py:11
+#: .\Anudan\forms.py:69 .\Anudan\models.py:77 .\Anudan\models.py:138
+msgid "Fiscal Year"
 msgstr ""
 
-#: .\Accounts\views.py:44
+#: .\Accounts\views.py:46
 msgid "username or password not correct"
 msgstr ""
 
-#: .\Accounts\views.py:70
+#: .\Accounts\views.py:72
 msgid "Invalid OTP, Check your email for new otp"
 msgstr ""
 
-#: .\AnudaanProject\settings.py:129
+#: .\AnudaanProject\settings.py:127
 msgid "English"
 msgstr "अंग्रेजी"
 
-#: .\AnudaanProject\settings.py:130
+#: .\AnudaanProject\settings.py:128
 msgid "Nepali"
 msgstr "नेपाली"
 
@@ -148,121 +154,225 @@ msgstr "अनुदान परियोजना"
 msgid "Home"
 msgstr "गृहपृष्ठ"
 
-#: .\Anudan\admin.py:74 .\Anudan\admin.py:86 .\Anudan\admin.py:143
-#: .\Anudan\admin.py:153
-msgid "Address"
-msgstr "ठेगाना"
-
-#: .\Anudan\admin.py:75 .\Anudan\admin.py:87
-msgid "Nagrikta Details"
-msgstr "नागरिकता विवरण"
-
-#: .\Anudan\admin.py:76 .\Anudan\admin.py:88 .\Anudan\admin.py:144
-#: .\Anudan\admin.py:154
-msgid "Anudan Request"
-msgstr "अनुदान अनुरोध"
-
-#: .\Anudan\admin.py:77 .\Anudan\admin.py:145
-msgid "Approval"
-msgstr "स्वीकृति"
-
-#: .\Anudan\admin.py:141
+#: .\Anudan\admin.py:147 .\Anudan\admin.py:159 .\Anudan\admin.py:255
+#: .\Anudan\admin.py:265 .\Anudan\admin.py:272
 msgid "Select Municipality"
 msgstr " नगरपालिका चयन गर्नुहोस्"
 
-#: .\Anudan\admin.py:142 .\Anudan\admin.py:152
+#: .\Anudan\admin.py:148 .\Anudan\admin.py:160 .\Anudan\admin.py:170
+msgid "Enter Your Name"
+msgstr ""
+
+#: .\Anudan\admin.py:149 .\Anudan\admin.py:161 .\Anudan\admin.py:171
+#: .\Anudan\admin.py:257 .\Anudan\admin.py:267 .\Anudan\admin.py:275
+msgid "Address"
+msgstr "ठेगाना"
+
+#: .\Anudan\admin.py:149 .\Anudan\admin.py:161 .\Anudan\admin.py:171
+#: .\Anudan\admin.py:257 .\Anudan\admin.py:267 .\Anudan\admin.py:275
+msgid "Enter Your Address"
+msgstr ""
+
+#: .\Anudan\admin.py:150 .\Anudan\admin.py:162 .\Anudan\admin.py:172
+msgid "Nagrikta Details"
+msgstr "नागरिकता विवरण"
+
+#: .\Anudan\admin.py:150 .\Anudan\admin.py:162 .\Anudan\admin.py:172
+msgid "Enter Your citizenship details"
+msgstr ""
+
+#: .\Anudan\admin.py:151 .\Anudan\admin.py:163 .\Anudan\admin.py:173
+#: .\Anudan\admin.py:258 .\Anudan\admin.py:268 .\Anudan\admin.py:276
+msgid "Anudan Request"
+msgstr "अनुदान अनुरोध"
+
+#: .\Anudan\admin.py:151 .\Anudan\admin.py:163 .\Anudan\admin.py:173
+#, fuzzy
+#| msgid "Karyakram name"
+msgid "Select Karyakram and Samagri"
+msgstr " कार्यक्रमको  नाम"
+
+#: .\Anudan\admin.py:152 .\Anudan\admin.py:259 .\Anudan\models.py:120
+#: .\Anudan\models.py:181
+msgid "Approval"
+msgstr "स्वीकृति"
+
+#: .\Anudan\admin.py:255 .\Anudan\admin.py:265 .\Anudan\admin.py:272
+msgid "Nagar Palika"
+msgstr ""
+
+#: .\Anudan\admin.py:256 .\Anudan\admin.py:266 .\Anudan\admin.py:274
 msgid "Firm info"
 msgstr "फर्मको जानकारी"
+
+#: .\Anudan\admin.py:256 .\Anudan\admin.py:266 .\Anudan\admin.py:274
+msgid "About Firm"
+msgstr ""
+
+#: .\Anudan\admin.py:258 .\Anudan\admin.py:268 .\Anudan\admin.py:276
+#, fuzzy
+#| msgid "Karyakram"
+msgid "Select Karyakram"
+msgstr " कार्यक्रम"
 
 #: .\Anudan\apps.py:8
 msgid "grant"
 msgstr "अनुदान"
 
-#: .\Anudan\models.py:6 .\Anudan\models.py:20 .\Anudan\models.py:42
-#: .\Anudan\models.py:73
-msgid "name"
-msgstr "नाम"
+#: .\Anudan\forms.py:10 .\Anudan\models.py:50 .\Anudan\models.py:235
+msgid "Quantity"
+msgstr ""
 
-#: .\Anudan\models.py:15
-msgid "Municipalities"
-msgstr "नगरपालिका"
+#: .\Anudan\models.py:14 .\Anudan\models.py:103 .\Anudan\models.py:169
+#: .\Municipality\models.py:30
+msgid "Sector"
+msgstr ""
 
-#: .\Anudan\models.py:28 .\Anudan\models.py:29 .\Anudan\models.py:39
-#: .\Anudan\models.py:83
+#: .\Anudan\models.py:16 .\Anudan\models.py:29 .\Anudan\models.py:49
+#: .\Anudan\models.py:83 .\Anudan\models.py:196 .\Anudan\models.py:209
+#: .\Municipality\models.py:10 .\Municipality\models.py:23
+#: .\Municipality\models.py:36
+msgid "Name"
+msgstr ""
+
+#: .\Anudan\models.py:24 .\Anudan\models.py:25 .\Anudan\models.py:46
+#: .\Anudan\models.py:58 .\Anudan\models.py:110 .\Anudan\models.py:176
 msgid "Karyakram"
 msgstr " कार्यक्रम"
 
-#: .\Anudan\models.py:49
-msgid "Karyakram name"
-msgstr " कार्यक्रमको  नाम"
+#: .\Anudan\models.py:36
+msgid "Unit"
+msgstr ""
 
-#: .\Anudan\models.py:55 .\Anudan\models.py:56 .\Anudan\models.py:91
+#: .\Anudan\models.py:37 .\Anudan\models.py:51
+msgid "Units"
+msgstr ""
+
+#: .\Anudan\models.py:64 .\Anudan\models.py:65 .\Anudan\models.py:117
 msgid "Samagri"
 msgstr "सामग्री"
 
-#: .\Anudan\models.py:74 .\Anudan\models.py:115
-msgid "ward"
-msgstr "वडा"
+#: .\Anudan\models.py:80 .\Anudan\models.py:141
+#, fuzzy
+#| msgid "Approval"
+msgid "Approved"
+msgstr "स्वीकृति"
 
-#: .\Anudan\models.py:75 .\Anudan\models.py:116
-msgid "tole"
-msgstr "टोल"
+#: .\Anudan\models.py:81 .\Anudan\models.py:142
+#, fuzzy
+#| msgid "Approval"
+msgid "Not Approved"
+msgstr "स्वीकृति"
 
-#: .\Anudan\models.py:76
+#: .\Anudan\models.py:89 .\Anudan\models.py:155 .\Anudan\models.py:216
+#: .\Municipality\models.py:43 .\Municipality\models.py:44
+msgid "Ward"
+msgstr ""
+
+#: .\Anudan\models.py:90 .\Anudan\models.py:156 .\Anudan\models.py:218
+msgid "Tole"
+msgstr ""
+
+#: .\Anudan\models.py:91
 msgid "Nagrikta Number"
 msgstr "नागरिकता नम्बर"
 
-#: .\Anudan\models.py:77 .\Anudan\models.py:117
-msgid "Jaari Jilla"
-msgstr "जारी जिल्ला"
-
-#: .\Anudan\models.py:84
+#: .\Anudan\models.py:92
 msgid "Nagrikta Front Photo"
 msgstr "नागरिकता को अगाडि फोटो"
 
-#: .\Anudan\models.py:85
+#: .\Anudan\models.py:93
 msgid "Nagrikta Back Photo"
 msgstr "नागरिकता को पछाडि फोटो"
 
-#: .\Anudan\models.py:93 .\Anudan\models.py:121
-msgid "approval"
-msgstr "स्वीकृति"
+#: .\Anudan\models.py:94 .\Anudan\models.py:157
+msgid "Jaari Jilla"
+msgstr "जारी जिल्ला"
 
-#: .\Anudan\models.py:102 .\Anudan\models.py:103
+#: .\Anudan\models.py:96 .\Anudan\models.py:145 .\Anudan\models.py:210
+#: .\Municipality\models.py:11
+#, fuzzy
+#| msgid "contact number"
+msgid "Contact Number"
+msgstr "सम्पर्क नम्बर"
+
+#: .\Anudan\models.py:122 .\Anudan\models.py:183
+msgid "updated"
+msgstr ""
+
+#: .\Anudan\models.py:132 .\Anudan\models.py:133
 msgid "Anudan Personal"
 msgstr "व्यक्तिगत अनुदान"
 
-#: .\Anudan\models.py:111
+#: .\Anudan\models.py:144
 msgid "Firm name"
 msgstr "फर्मको नाम"
 
-#: .\Anudan\models.py:112
+#: .\Anudan\models.py:147
 msgid "PAN no"
 msgstr "प्यान नम्बर"
 
-#: .\Anudan\models.py:113
+#: .\Anudan\models.py:148
 msgid "VAT no"
 msgstr "भ्याट नम्बर"
 
-#: .\Anudan\models.py:114
+#: .\Anudan\models.py:149
 msgid "Registration Number"
 msgstr "दर्ता नम्बर"
 
-#: .\Anudan\models.py:118
+#: .\Anudan\models.py:159
+msgid "Gharelu"
+msgstr ""
+
+#: .\Anudan\models.py:160
+msgid "Banijya"
+msgstr ""
+
+#: .\Anudan\models.py:162
+msgid "Registered as"
+msgstr ""
+
+#: .\Anudan\models.py:163
 msgid "Firm Registration Proof"
 msgstr "फर्म दर्ता फारम"
 
-#: .\Anudan\models.py:119
+#: .\Anudan\models.py:178
 msgid "Ward Sifaris"
 msgstr "वार्ड सिफारिस"
 
-#: .\Anudan\models.py:120
+#: .\Anudan\models.py:179
 msgid "Upload Prastavan"
 msgstr "अपलोड प्रस्ताव"
 
-#: .\Anudan\models.py:128 .\Anudan\models.py:129
+#: .\Anudan\models.py:190 .\Anudan\models.py:191
 msgid "Anudan Company"
 msgstr "संस्थागत अनुदान"
+
+#: .\Anudan\models.py:203 .\Anudan\models.py:234
+msgid "Medicine"
+msgstr ""
+
+#: .\Anudan\models.py:204
+msgid "Medicines"
+msgstr ""
+
+#: .\Anudan\models.py:228 .\Anudan\models.py:229
+#, fuzzy
+#| msgid "Anudan Request"
+msgid "Medicine Request"
+msgstr "अनुदान अनुरोध"
+
+#: .\Anudan\models.py:233
+msgid "Requested By"
+msgstr ""
+
+#: .\Municipality\models.py:19
+msgid "Municipalities"
+msgstr "नगरपालिका"
+
+#: .\Municipality\models.py:31
+msgid "Sectors"
+msgstr ""
 
 #: .\templates\admin\base.html:45
 msgid "Welcome,"
@@ -297,7 +407,7 @@ msgstr "मुख्य कार्यालय"
 #: .\templates\admin\otp.html:36
 #, fuzzy
 #| msgid "Log out"
-msgid "Log out"
+msgid "Log in"
 msgstr " लगअफ गर्नुहोस्"
 
 #: .\templates\admin\login.html:25 .\templates\admin\otp.html:23
@@ -322,3 +432,15 @@ msgstr ""
 #: .\templates\admin\otp.html:3
 msgid "Verify OTP"
 msgstr ""
+
+#~ msgid "name"
+#~ msgstr "नाम"
+
+#~ msgid "ward"
+#~ msgstr "वडा"
+
+#~ msgid "tole"
+#~ msgstr "टोल"
+
+#~ msgid "approval"
+#~ msgstr "स्वीकृति"
